@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-// sis kodas sunaikina dirta kai ji paliecia kauptukas
 
 public class TillingOnTouch : MonoBehaviour
 {
