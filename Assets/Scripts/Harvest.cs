@@ -7,9 +7,9 @@ public class DisappearOnTouch : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("GameController"))
+        if (other.CompareTag("Wheat"))
         {
-            Destroy(gameObject);
+            Destroy(other.gameObject);
             onTriggerEnter.Invoke();
         }
     }
