@@ -1,11 +1,16 @@
 using UnityEngine;
+using UnityEngine.Events;
+
 public class DisappearOnTouch : MonoBehaviour
 {
+    [SerializeField] UnityEvent onTriggerEnter;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("GameController"))
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
+            onTriggerEnter.Invoke();
         }
     }
 }
