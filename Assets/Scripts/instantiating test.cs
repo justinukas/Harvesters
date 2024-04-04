@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class instantiatingtest : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] UnityEvent onTriggerEnter;
+    public Rigidbody cum;
+    public Transform my_testicle;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider othercube)
     {
-        
+        if (othercube.CompareTag("Hoe"))
+        {
+            Debug.Log("i love minors");
+            Invoke("MessageDelay", 3);
+        }
+    }
+    void MessageDelay()
+    {
+        Debug.Log("wait i dont love minors");
+        Instantiate(cum, my_testicle.position, my_testicle.rotation);
+        return;
     }
 }
