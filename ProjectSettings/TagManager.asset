@@ -8,6 +8,7 @@ TagManager:
   - Dirt
   - Wheat
   - Tilled_Dirt
+  - Water
   layers:
   - Default
   - TransparentFX
