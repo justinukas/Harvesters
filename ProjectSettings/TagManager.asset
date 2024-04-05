@@ -7,6 +7,7 @@ TagManager:
   - Hoe
   - Dirt
   - Wheat
+  - Tilled_Dirt
   layers:
   - Default
   - TransparentFX

@@ -4,21 +4,15 @@ using UnityEngine.Events;
 public class instantiatingtest : MonoBehaviour
 {
     [SerializeField] UnityEvent onTriggerEnter;
-    public Rigidbody cum;
-    public Transform my_testicle;
+    public Rigidbody tilledDirt;
+    public Transform dirt;
 
-    void OnTriggerEnter(Collider othercube)
+    void OnTriggerEnter(Collider collidedObject)
     {
-        if (othercube.CompareTag("Hoe"))
+        if (collidedObject.CompareTag("Dirt"))
         {
-            Debug.Log("i love minors");
-            Invoke("MessageDelay", 3);
+            Instantiate(tilledDirt, collidedObject.transform.position, collidedObject.transform.rotation);
+            Destroy(collidedObject.gameObject);
         }
-    }
-    void MessageDelay()
-    {
-        Debug.Log("wait i dont love minors");
-        Instantiate(cum, my_testicle.position, my_testicle.rotation);
-        return;
     }
 }

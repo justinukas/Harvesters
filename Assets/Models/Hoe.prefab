@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 243973338912370262}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.71230465, w: 0.70187044}
-  m_LocalPosition: {x: 3.5130124, y: 1.011, z: 0}
-  m_LocalScale: {x: 0.027794948, y: 1.7499495, z: 2.3866198}
+  m_LocalPosition: {x: 1.44, y: 0.991, z: 0}
+  m_LocalScale: {x: 0.027794948, y: 0.75379634, z: 0.7766282}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8471819282598861787}
@@ -145,8 +145,8 @@ GameObject:
   - component: {fileID: 4450266078123992958}
   - component: {fileID: 2085411395514293275}
   - component: {fileID: 2985456266594688044}
-  - component: {fileID: 4278690997030818349}
   - component: {fileID: 1478567254452643285}
+  - component: {fileID: 3623911651485521834}
   m_Layer: 0
   m_Name: Hoe
   m_TagString: Hoe
@@ -163,8 +163,8 @@ Transform:
   m_GameObject: {fileID: 3651968691733021068}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 5, z: 39.9}
-  m_LocalScale: {x: 0.8055764, y: 10, z: 1.3986827}
+  m_LocalPosition: {x: 4.811, y: 5.857, z: 53.174}
+  m_LocalScale: {x: 0.24544401, y: 0.8, z: 0.26277}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2969904731718820448}
@@ -242,21 +242,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4278690997030818349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3651968691733021068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 024752c3faf960040ab10b6a5cfea785, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onTriggerEnter:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!54 &1478567254452643285
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -284,6 +269,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3623911651485521834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3651968691733021068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1651f637c7e7d247ac8fed28b3b538b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTriggerEnter:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &9206040502089581203
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,8 +313,8 @@ Transform:
   m_GameObject: {fileID: 9206040502089581203}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.71170336, w: 0.70248014}
-  m_LocalPosition: {x: 1.2661741, y: 0.978, z: 0}
-  m_LocalScale: {x: 0.040405847, y: 0.827632, z: 0.73514295}
+  m_LocalPosition: {x: 0.69, y: 0.978, z: 0}
+  m_LocalScale: {x: 0.040405847, y: 0.3101882, z: 0.39532313}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8471819282598861787}
