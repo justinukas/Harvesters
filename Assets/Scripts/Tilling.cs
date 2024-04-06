@@ -1,16 +1,18 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TillingOnTouch : MonoBehaviour
+public class Tilling : MonoBehaviour
 {
     [SerializeField] UnityEvent onTriggerEnter;
+    public Rigidbody tilledDirt;
+    public Transform dirt;
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider collidedObject)
     {
-        if (other.CompareTag("Dirt"))
+        if (collidedObject.CompareTag("Dirt"))
         {
-            Destroy(other.gameObject);
-            onTriggerEnter.Invoke();
+            Instantiate(tilledDirt, collidedObject.transform.position, collidedObject.transform.rotation);
+            Destroy(collidedObject.gameObject);
         }
     }
 }
