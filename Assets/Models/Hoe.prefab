@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 1527253254826288152}
   - component: {fileID: 1268065243638790112}
   - component: {fileID: 2704374845360996867}
-  - component: {fileID: 6086688454622555494}
-  - component: {fileID: 9100533967153628429}
   m_Layer: 0
   m_Name: Hoe (2)
   m_TagString: Hoe
@@ -29,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1552872948448257550}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.71230465, w: 0.70187044}
-  m_LocalPosition: {x: 2.62, y: 1.005, z: 0.044}
+  m_LocalRotation: {x: 0.00028604147, y: -0.00053679297, z: 0.7094474, w: 0.7047582}
+  m_LocalPosition: {x: 2.36, y: 0.99, z: 0.044}
   m_LocalScale: {x: 0.027794948, y: 1.8146523, z: 1.6302636}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7169694382709789571}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.845}
+  m_LocalEulerAnglesHint: {x: 0.067, y: -0.02, z: 90.38}
 --- !u!33 &1527253254826288152
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -105,52 +103,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &6086688454622555494
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1552872948448257550}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &9100533967153628429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1552872948448257550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1651f637c7e7d247ac8fed28b3b538b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onTriggerEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  tilledDirt: {fileID: 7667814637067432998, guid: 3a3c9a808f4ab104e9c5fe46db42adfc, type: 3}
-  dirt: {fileID: 6059380895877456232, guid: 8d9264d4e011f8749982ee37167f07ce, type: 3}
+  m_Size: {x: 1.88, y: 1.76, z: 1}
+  m_Center: {x: 0.06, y: -0.1, z: 0}
 --- !u!1 &2612171211609967060
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,9 +116,10 @@ GameObject:
   - component: {fileID: 7169694382709789571}
   - component: {fileID: 3111046877678071590}
   - component: {fileID: 729287714892256323}
-  - component: {fileID: 4575751116772136052}
   - component: {fileID: 174163570009271693}
   - component: {fileID: 1973681814189819248}
+  - component: {fileID: 8169677055133722944}
+  - component: {fileID: 2232680551187497394}
   m_Layer: 0
   m_Name: Hoe
   m_TagString: Untagged
@@ -181,7 +136,7 @@ Transform:
   m_GameObject: {fileID: 2612171211609967060}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.4427, y: 5.4835, z: 10.837}
+  m_LocalPosition: {x: 7.697, y: 5.3, z: 11.098}
   m_LocalScale: {x: 0.05, y: 0.74936, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -239,27 +194,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4575751116772136052
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2612171211609967060}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &174163570009271693
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -281,8 +215,8 @@ Rigidbody:
     serializedVersion: 2
     m_Bits: 0
   m_ImplicitCom: 1
-  m_ImplicitTensor: 0
-  m_UseGravity: 0
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -433,12 +367,52 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_ThrowVelocityScale: 1.5
   m_ThrowAngularVelocityScale: 1
-  m_ForceGravityOnDetach: 0
+  m_ForceGravityOnDetach: 1
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &8169677055133722944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612171211609967060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1651f637c7e7d247ac8fed28b3b538b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTriggerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  tilledDirt: {fileID: 7667814637067432998, guid: 3a3c9a808f4ab104e9c5fe46db42adfc, type: 3}
+  dirt: {fileID: 6059380895877456232, guid: 8d9264d4e011f8749982ee37167f07ce, type: 3}
+--- !u!136 &2232680551187497394
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612171211609967060}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &7578503475126029003
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +425,6 @@ GameObject:
   - component: {fileID: 4391775362332606003}
   - component: {fileID: 8229059997503876155}
   - component: {fileID: 3103732081091279501}
-  - component: {fileID: 2510417521181271202}
   - component: {fileID: 131003135860084301}
   m_Layer: 0
   m_Name: Hoe (1)
@@ -546,33 +519,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &2510417521181271202
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7578503475126029003}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &131003135860084301
 MonoBehaviour:
   m_ObjectHideFlags: 0

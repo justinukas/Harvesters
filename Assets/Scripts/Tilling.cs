@@ -9,7 +9,7 @@ public class Tilling : MonoBehaviour
 
     void OnTriggerEnter(Collider collidedObject)
     {
-        if (collidedObject.CompareTag("Dirt"))
+        if (/* objectisgrabbed && */collidedObject.CompareTag("Dirt"))
         {
             Instantiate(tilledDirt, collidedObject.transform.position, collidedObject.transform.rotation);
             Destroy(collidedObject.gameObject);

@@ -9,7 +9,7 @@ public class SeedInteraction : MonoBehaviour
     {
         onTriggerEnter.Invoke();
         // Check if the seed touches the dirt
-        if (other.CompareTag("Tilled_Dirt"))
+        if (other.CompareTag("TilledDirt"))
         {
             // Spawn wheat at specific locations on the dirt
             SpawnWheat(other.transform);

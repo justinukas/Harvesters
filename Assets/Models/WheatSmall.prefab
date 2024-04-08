@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5312766489913969088}
   m_Layer: 0
   m_Name: WheatSmall
-  m_TagString: Wheat
+  m_TagString: WheatSmall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 5746729425116828334}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.386, y: 5.278, z: 8.11}
-  m_LocalScale: {x: 0.014318721, y: 1.0363853, z: 0.026823884}
+  m_LocalPosition: {x: 8.6864, y: 4.4794, z: 8.11}
+  m_LocalScale: {x: 0.01675, y: 0.9849, z: 0.022605}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -100,7 +100,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -132,4 +132,4 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2

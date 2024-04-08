@@ -101,7 +101,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -119,21 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9430c6fdd9daa4781e07063affe1ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTriggerEnter:
+  OnCropPickup:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!54 &4482890163260591190
 Rigidbody:
   m_ObjectHideFlags: 0
