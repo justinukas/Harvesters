@@ -11,7 +11,7 @@ PresetManager:
       m_ManagedTypeFallback: 
     second:
     - m_Preset: {fileID: 2655988077585873504, guid: 2c3e7ff9ab352b74da862a5a8779b276, type: 2}
-      m_Filter: UI Input Module
+      m_Filter: 
       m_Disabled: 0
   - first:
       m_NativeTypeID: 114
@@ -19,7 +19,7 @@ PresetManager:
       m_ManagedTypeFallback: 
     second:
     - m_Preset: {fileID: 2655988077585873504, guid: 91f9da00cfdac5d49955df2d2d820b9c, type: 2}
-      m_Filter: Move
+      m_Filter: 
       m_Disabled: 0
   - first:
       m_NativeTypeID: 114
@@ -27,7 +27,7 @@ PresetManager:
       m_ManagedTypeFallback: 
     second:
     - m_Preset: {fileID: 2655988077585873504, guid: 18697d253d848974aa7052cba872c9f0, type: 2}
-      m_Filter: Snap Turn
+      m_Filter: 
       m_Disabled: 0
   - first:
       m_NativeTypeID: 114
@@ -46,7 +46,7 @@ PresetManager:
       m_ManagedTypeFallback: 
     second:
     - m_Preset: {fileID: 2655988077585873504, guid: 0caad3af14f9a414dbdf25ed41e5aa47, type: 2}
-      m_Filter: Turn
+      m_Filter: 
       m_Disabled: 0
   - first:
       m_NativeTypeID: 114
@@ -68,7 +68,7 @@ PresetManager:
       m_ManagedTypeFallback: 
     second:
     - m_Preset: {fileID: 2655988077585873504, guid: d3223012ddb39d24584825882e7ea40b, type: 2}
-      m_Filter: Screen Space Controller
+      m_Filter: 
       m_Disabled: 0
   - first:
       m_NativeTypeID: 114
