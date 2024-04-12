@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class Control : MonoBehaviour
 {
-    public void NextScene()
+    public void LoadMainScene()
     {
         SceneManager.LoadScene("great merge");
     }
