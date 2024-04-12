@@ -5,6 +5,6 @@ public class Control : MonoBehaviour
 {
     public void LoadMainScene()
     {
-        SceneManager.LoadScene("great merge");
+        SceneManager.LoadScene("MainScene");
     }
 }
