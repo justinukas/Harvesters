@@ -5,14 +5,14 @@ public class SeedInteraction : MonoBehaviour
 {
     [SerializeField] UnityEvent onTriggerEnter;
     public GameObject WheatSmall; // Reference to the wheat prefab
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         // Check if the seed touches the dirt
-        if (other.CompareTag("TilledDirt"))
+        if (other.gameObject.CompareTag("TilledDirt"))
         {
             // Spawn wheat at specific locations on the dirt
             onTriggerEnter.Invoke();
-            SpawnWheat(other.transform);
+            SpawnWheat(other.gameObject.transform);
             Destroy(gameObject);
         }
     }

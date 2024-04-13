@@ -3,22 +3,27 @@ using UnityEngine.Events;
 
 public class WheatHarvest : MonoBehaviour
 {
-    int WheatCutNr;
+    [SerializeField] UnityEvent PopSFX;
+
+    private int WheatCutNr = 0;
+
     public Transform wheatBundle;
-    void OnCollisionEnter(Collision other)
+
+    private void OnTriggerEnter(Collider collider)
     {
-        if (other.gameObject.CompareTag("WheatSmall"))
+        if (collider.gameObject.CompareTag("WheatSmall"))
         {
-            other.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            WheatCutNr += WheatCutNr;
-        }
-    }
-    private void Update()
-    {
-        if (WheatCutNr == 5)
-        {
-            Instantiate(wheatBundle, gameObject.transform.position, gameObject.transform.rotation);
-            WheatCutNr = 0;
+            collider.GetComponent<BoxCollider>().isTrigger = false;
+            collider.GetComponent<Rigidbody>().isKinematic = false;
+
+            WheatCutNr = WheatCutNr+1;
+
+            PopSFX.Invoke();
+
+            if (WheatCutNr == 5) 
+            {
+                Instantiate(wheatBundle, gameObject.transform.position, gameObject.transform.rotation);
+            }
         }
     }
 }
