@@ -12,9 +12,13 @@ public class WheatHarvest : MonoBehaviour
             other.gameObject.GetComponent<Rigidbody>().isKinematic = false;
             WheatCutNr += WheatCutNr;
         }
+    }
+    private void Update()
+    {
         if (WheatCutNr == 5)
         {
             Instantiate(wheatBundle, gameObject.transform.position, gameObject.transform.rotation);
+            WheatCutNr = 0;
         }
     }
 }

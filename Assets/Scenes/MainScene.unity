@@ -681,7 +681,6 @@ GameObject:
   - component: {fileID: 323238859}
   - component: {fileID: 323238858}
   - component: {fileID: 323238857}
-  - component: {fileID: 323238863}
   m_Layer: 0
   m_Name: Scythe
   m_TagString: Untagged
@@ -819,33 +818,6 @@ Transform:
   - {fileID: 1131505881}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &323238863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 323238856}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 760ff70c1c91bdd45907d0ff0cdcaf7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_System: {fileID: 0}
-  m_EnableFreeXMovement: 1
-  m_EnableFreeYMovement: 0
-  m_EnableFreeZMovement: 1
-  m_UseGravity: 1
-  m_GravityApplicationMode: 0
-  m_LeftGrabMoveProvider: {fileID: 0}
-  m_RightGrabMoveProvider: {fileID: 0}
-  m_OverrideSharedSettingsOnInit: 1
-  m_MoveFactor: 1
-  m_RequireTwoHandsForTranslation: 0
-  m_EnableRotation: 1
-  m_EnableScaling: 0
-  m_MinimumScale: 0.2
-  m_MaximumScale: 100
 --- !u!1 &473552307
 GameObject:
   m_ObjectHideFlags: 0
@@ -1299,7 +1271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6070985389836727349, guid: 3a3c9a808f4ab104e9c5fe46db42adfc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.66
+      value: 0.825
       objectReference: {fileID: 0}
     - target: {fileID: 6070985389836727349, guid: 3a3c9a808f4ab104e9c5fe46db42adfc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3644,7 +3616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6059380895877456232, guid: 8d9264d4e011f8749982ee37167f07ce, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.66
+      value: 0.809
       objectReference: {fileID: 0}
     - target: {fileID: 6059380895877456232, guid: 8d9264d4e011f8749982ee37167f07ce, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3941,6 +3913,14 @@ PrefabInstance:
     - target: {fileID: 944161152782148426, guid: 0ecf098620f3051468083661ac52819a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312766489913969088, guid: 0ecf098620f3051468083661ac52819a, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312766489913969088, guid: 0ecf098620f3051468083661ac52819a, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5746729425116828334, guid: 0ecf098620f3051468083661ac52819a, type: 3}
       propertyPath: m_Name
