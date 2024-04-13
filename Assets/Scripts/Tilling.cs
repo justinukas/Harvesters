@@ -3,7 +3,6 @@ using UnityEngine.Events;
 
 public class Tilling : MonoBehaviour
 {
-    [SerializeField] UnityEvent onTriggerEnter;
     public Rigidbody tilledDirt;
     public Transform dirt;
 
