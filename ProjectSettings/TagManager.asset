@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Hoe
+  - Dirt
+  - Wheat
+  - Water
+  - WheatSmall
+  - TilledDirt
+  - Tilled_Dirt
   layers:
   - Default
   - TransparentFX
