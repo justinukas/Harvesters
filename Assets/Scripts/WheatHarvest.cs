@@ -9,7 +9,7 @@ public class WheatHarvest : MonoBehaviour
     {
         if (other.gameObject.CompareTag("WheatSmall"))
         {
-            other.gameObject.GetComponent<Rigidbody>().useGravity = true;
+            other.gameObject.GetComponent<Rigidbody>().isKinematic = false;
             WheatCutNr += WheatCutNr;
         }
         if (WheatCutNr == 5)
