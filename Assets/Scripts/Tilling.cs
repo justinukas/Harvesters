@@ -6,12 +6,19 @@ public class Tilling : MonoBehaviour
     public Rigidbody tilledDirt;
     public Transform dirt;
 
+    void Start()
+    {
+        gameObject.GetComponent<Tilling>().enabled = false;
+    }
+
     void OnTriggerEnter(Collider collidedObject)
     {
-        if (/* objectisgrabbed && */collidedObject.CompareTag("Dirt"))
+        if (collidedObject.CompareTag("Dirt") && gameObject.GetComponent<Tilling>().enabled == true)
         {
-            Instantiate(tilledDirt, collidedObject.transform.position, collidedObject.transform.rotation);
-            Destroy(collidedObject.gameObject);
+            Instantiate(tilledDirt, collidedObject.transform.position, collidedObject.transform.rotation); //clones a tilled dirt where the grass is
+            Destroy(collidedObject.gameObject); //destroys grass
         }
     }
+
+
 }
