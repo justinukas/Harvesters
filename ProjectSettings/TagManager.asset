@@ -11,6 +11,7 @@ TagManager:
   - WheatSmall
   - TilledDirt
   - Tilled_Dirt
+  - Render Ball
   layers:
   - Default
   - TransparentFX
