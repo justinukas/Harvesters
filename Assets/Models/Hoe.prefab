@@ -135,10 +135,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2612171211609967060}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.74936, z: 0.05}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.03, y: 5.2308426, z: 30.125}
+  m_LocalScale: {x: 0.026214, y: 0.39287448, z: 0.026214}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4600731944181951032}
   - {fileID: 7861431026874072819}
@@ -233,11 +233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1651f637c7e7d247ac8fed28b3b538b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTriggerEnter:
-    m_PersistentCalls:
-      m_Calls: []
   tilledDirt: {fileID: 7667814637067432998, guid: 3a3c9a808f4ab104e9c5fe46db42adfc, type: 3}
-  dirt: {fileID: 6059380895877456232, guid: 8d9264d4e011f8749982ee37167f07ce, type: 3}
+  ParticleSystem: {fileID: 7378439522049126983, guid: 71de35ff70b33714382b0a14b442d502, type: 3}
 --- !u!136 &2232680551187497394
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -311,10 +308,34 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8169677055133722944}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8169677055133722944}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -371,7 +392,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -531,8 +552,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1651f637c7e7d247ac8fed28b3b538b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTriggerEnter:
-    m_PersistentCalls:
-      m_Calls: []
   tilledDirt: {fileID: 7667814637067432998, guid: 3a3c9a808f4ab104e9c5fe46db42adfc, type: 3}
-  dirt: {fileID: 6059380895877456232, guid: 8d9264d4e011f8749982ee37167f07ce, type: 3}
+  ParticleSystem: {fileID: 0}
