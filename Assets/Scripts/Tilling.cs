@@ -9,6 +9,8 @@ public class Tilling : MonoBehaviour
     private ParticleSystem dirtParticles;
 
     private Transform grassTransform;
+
+    private Collider hoeCollider;
     
     private int TimesTilled = 0;
 
@@ -31,9 +33,10 @@ public class Tilling : MonoBehaviour
 
             if (TimesTilled == 3)
             {
-                dirtParticles.Emit(1);
+                dirtParticles.Emit(8);
                 Instantiate(tilledDirt, collidedObject.gameObject.transform.position, collidedObject.gameObject.transform.rotation);
                 Destroy(collidedObject.gameObject);
+                TimesTilled = 0;
             }
         }
     }
