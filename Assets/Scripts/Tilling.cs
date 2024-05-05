@@ -9,8 +9,6 @@ public class Tilling : MonoBehaviour
     private ParticleSystem dirtParticles;
 
     private Transform grassTransform;
-
-    private Collider hoeCollider;
     
     private int TimesTilled = 0;
 
