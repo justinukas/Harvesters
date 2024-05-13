@@ -368,7 +368,6 @@ GameObject:
   - component: {fileID: 8921141469080599129}
   - component: {fileID: 8970101869926203382}
   - component: {fileID: 960415584169143267}
-  - component: {fileID: 4496376467868657062}
   m_Layer: 0
   m_Name: Scythe 1
   m_TagString: Untagged
@@ -386,7 +385,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 115.75, y: 1.5634, z: 36.667}
-  m_LocalScale: {x: 0.00913356, y: 0.00913356, z: 0.00913356}
+  m_LocalScale: {x: 0.012, y: 0.012, z: 0.012}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2905830455577707614}
@@ -595,9 +594,9 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 0}
-  m_SecondaryAttachTransform: {fileID: 6641261551158305693}
-  m_UseDynamicAttach: 1
+  m_AttachTransform: {fileID: 8266716508050108430}
+  m_SecondaryAttachTransform: {fileID: 3451592212894848638}
+  m_UseDynamicAttach: 0
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
@@ -643,32 +642,8 @@ MonoBehaviour:
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
   m_StartingSingleGrabTransformers: []
-  m_StartingMultipleGrabTransformers:
-  - {fileID: 4496376467868657062}
-  m_AddDefaultGrabTransformers: 1
---- !u!114 &4496376467868657062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983747349789728311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a1302d0d134fa8a2a5b3bf4aec3c20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PermittedDisplacementAxes: -1
-  m_ConstrainedAxisDisplacementMode: 1
-  m_TwoHandedRotationMode: 1
-  m_AllowOneHandedScaling: 0
-  m_AllowTwoHandedScaling: 1
-  m_OneHandedScaleSpeed: 0.5
-  m_ThresholdMoveRatioForScale: 0.05
-  m_ClampScaling: 1
-  m_MinimumScaleRatio: 0.25
-  m_MaximumScaleRatio: 2
-  m_ScaleMultiplier: 0.25
+  m_StartingMultipleGrabTransformers: []
+  m_AddDefaultGrabTransformers: 0
 --- !u!1 &2807899161728895253
 GameObject:
   m_ObjectHideFlags: 0
