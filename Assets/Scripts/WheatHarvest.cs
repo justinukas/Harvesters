@@ -5,25 +5,19 @@ public class WheatHarvest : MonoBehaviour
 {
     [SerializeField] UnityEvent PopSFX;
 
-    private int WheatCutNr = 0;
-
-    public Transform wheatBundle;
+    private Inventory script;
 
     private void OnTriggerEnter(Collider collider)
     {
+        script = GameObject.Find("Open Bag").GetComponent<Inventory>();
         if (collider.gameObject.CompareTag("WheatSmall"))
         {
-            collider.GetComponent<BoxCollider>().isTrigger = false;
+            Debug.Log("collided with wheat");
+            collider.GetComponent<MeshCollider>().isTrigger = false;
             collider.GetComponent<Rigidbody>().isKinematic = false;
 
-            WheatCutNr = WheatCutNr+1;
-
             PopSFX.Invoke();
-
-            if (WheatCutNr == 5) 
-            {
-                Instantiate(wheatBundle, gameObject.transform.position, gameObject.transform.rotation);
-            }
+            script.WheatCollection();
         }
     }
 }
