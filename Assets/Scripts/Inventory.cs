@@ -6,11 +6,11 @@ public class Inventory : MonoBehaviour
     //inventory gameobject
     private GameObject inventory;
 
-    // gameobjects
+    // bag variants
     private GameObject closedBag;
     private GameObject openBag;
 
-    // text fields 4 crops
+    // text fields on canvas for crops
     private GameObject carrotTextGO;
     private GameObject wheatTextGO;
 
@@ -21,10 +21,12 @@ public class Inventory : MonoBehaviour
     string wheatNrText;
 
     // money related
-    float weight = 0f;
     float value; // value = 2x weight (1 weight = 2 dabloons)
 
-    bool bagIsActive = true;
+    // fullness measurement
+    float weight = 0f;
+
+    public bool bagIsActive = true;
     
     void Start()
     {

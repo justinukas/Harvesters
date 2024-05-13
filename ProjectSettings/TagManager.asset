@@ -11,6 +11,9 @@ TagManager:
   - TilledDirt
   - Tilled_Dirt
   - Carrot
+  - WheatSmall
+  - Render Ball
+  - HarvestedWheat
   layers:
   - Default
   - TransparentFX
