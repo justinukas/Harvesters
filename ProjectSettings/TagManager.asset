@@ -8,10 +8,9 @@ TagManager:
   - Dirt
   - Wheat
   - Water
-  - WheatSmall
   - TilledDirt
   - Tilled_Dirt
-  - Render Ball
+  - Carrot
   layers:
   - Default
   - TransparentFX
