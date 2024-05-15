@@ -3,19 +3,22 @@ using UnityEngine.Events;
 
 public class CarrotSeedInteraction : MonoBehaviour
 {
-    [SerializeField] UnityEvent onTriggerEnter;
-    public GameObject Carrot; // Reference to the carrot prefab
+    [SerializeField] UnityEvent PopSFX;
+
+    public GameObject Carrot;
+
     private void OnCollisionEnter(Collision other)
     {
         // Check if the seed touches the dirt
         if (other.gameObject.CompareTag("TilledDirt"))
         {
+            PopSFX.Invoke();
             SpawnCarrots(other.gameObject.transform);
             Destroy(gameObject);
         }
     }
 
-    private void SpawnCarrots(Transform dirtTransform)
+    void SpawnCarrots(Transform dirtTransform)
     {
         // Get the top surface position of the dirt
         Vector3 spawnPosition = dirtTransform.position + Vector3.up * dirtTransform.localScale.y / 2f;
