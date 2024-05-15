@@ -6,9 +6,6 @@ public class SeedInteraction : MonoBehaviour
     [SerializeField] UnityEvent PopSFX;
 
     public GameObject WheatSmall; // Reference to the wheat prefab
-    int timesSpawned = 1;
-    float wheatSpawnOffsetX;
-    float wheatSpawnOffsetZ;
 
     private void OnCollisionEnter(Collision other)
     {
@@ -36,15 +33,6 @@ public class SeedInteraction : MonoBehaviour
         new Vector3(0.45f, 0.5f, 0.45f),
         new Vector3(0f, 0.5f, 0f)
         };
-        for (timesSpawned = 1; timesSpawned <= 5; timesSpawned++)
-        {
-            for (timesSpawned = 1; timesSpawned <=5; timesSpawned++)
-            {
-
-            }
-            float wheatSpawnOffsetX = -0.45f + 0.15f;
-            fixedSpawnOffsets.Add(new Vector3(wheatSpawnOffsetX, 0.5f, wheatSpawnOffsetZ));
-        }
 
         // Instantiate wheat at fixed locations on the top surface of the dirt
         foreach (Vector3 offset in fixedSpawnOffsets)
