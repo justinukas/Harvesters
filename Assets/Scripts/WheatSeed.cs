@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class SeedInteraction : MonoBehaviour
 {
-    [SerializeField] UnityEvent onTriggerEnter;
+    [SerializeField] UnityEvent PopSFX;
     public GameObject WheatSmall; // Reference to the wheat prefab
     private void OnCollisionEnter(Collision other)
     {
@@ -11,7 +11,7 @@ public class SeedInteraction : MonoBehaviour
         if (other.gameObject.CompareTag("TilledDirt"))
         {
             // Spawn wheat at specific locations on the dirt
-            onTriggerEnter.Invoke();
+            PopSFX.Invoke();
             SpawnWheat(other.gameObject.transform);
             Destroy(gameObject);
         }
