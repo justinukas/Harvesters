@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using System.Linq;
 using System.Collections.Generic;
 
 public class WheatSeedTest : MonoBehaviour
@@ -44,7 +43,7 @@ public class WheatSeedTest : MonoBehaviour
             wheatSpawnOffsetX -= 0.2f;
             wheatSpawnOffsetZ = 0.45f;
         }
-        SpawnWheat();
+        SpawnWheat(); // initiate wheat spawning
     }
 
     private void SpawnWheat()
@@ -53,13 +52,11 @@ public class WheatSeedTest : MonoBehaviour
         Vector3 dirtSurface = dirtPosition + Vector3.up * dirtPosition.y / 2f;
         Debug.Log(dirtSurface);
 
-        List<GameObject> Wheat = new List<GameObject>();
         // Instantiate wheat at fixed locations on the top surface of the dirt
         foreach (Vector3 spawnOffset in wheatPositionsList) 
         {
             Vector3 finalSpawnPosition = dirtSurface + spawnOffset; // calculate final spawn position with an offset from list
-            Wheat.Add(Instantiate(WheatSmall, finalSpawnPosition, Quaternion.Euler(-90f, 0f, 0f))); // instantiate wheat at the calculated position
-            Debug.Log(Wheat.name);
+            Instantiate(WheatSmall, finalSpawnPosition, Quaternion.Euler(-90f, 0f, 0f)); // instantiate wheat at the calculated position
         }
     }
 }

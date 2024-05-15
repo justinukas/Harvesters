@@ -3,28 +3,25 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    //inventory gameobject
-    private GameObject inventory;
-
     // bag variants
     private GameObject closedBag;
     private GameObject openBag;
+    // inventory canvas
+    private GameObject inventory;
 
-    // text fields on canvas for crops
+    // text gameobjects
     private GameObject carrotTextGO;
     private GameObject wheatTextGO;
 
     // crops
     int carrotNr = 0;
-    string carrotNrText;
     int wheatNr = 0;
-    string wheatNrText;
-
-    // money related
-    float value; // value = 2x weight (1 weight = 2 dabloons)
 
     // fullness measurement
     float weight = 0f;
+
+    // money related
+    float value;
 
     public bool bagIsActive = true;
     
@@ -34,18 +31,15 @@ public class Inventory : MonoBehaviour
         openBag = GameObject.Find("Open Bag");
         closedBag = GameObject.Find("Closed Bag");
         inventory = GameObject.Find("Inventory");
-
-        // hides closed bag
-        closedBag.transform.position = new Vector3(0f, 0f, 0f);
     }
 
-    // for putting things in bag
+    // put carrots in bag
     void OnCollisionEnter(Collision collider)
     {
         if (bagIsActive && collider.gameObject.CompareTag("Carrot"))
         {
-            carrotNr = carrotNr + 1;
-            carrotNrText = carrotNr.ToString();
+            carrotNr += 1;
+            string carrotNrText = carrotNr.ToString();
 
             carrotTextGO = GameObject.Find("Carrot Nr");
             carrotTextGO.GetComponent<Text>().text = carrotNrText;
@@ -54,7 +48,7 @@ public class Inventory : MonoBehaviour
             Destroy(collider.gameObject);
             Closing();
         }
-       
+
     }
 
     // wheat collection
@@ -62,13 +56,13 @@ public class Inventory : MonoBehaviour
     {
         if (bagIsActive)
         {
-            wheatNr = wheatNr + 1;
+            wheatNr += 1;
 
             //converts int to string
-            wheatNrText = wheatNr.ToString();
+            string wheatNrText = wheatNr.ToString();
 
             //finds wheatnr textbox and writes number of wheat in it
-            wheatTextGO = GameObject.Find("Wheat Nr");
+            GameObject wheatTextGO = GameObject.Find("Wheat Nr");
             wheatTextGO.GetComponent<Text>().text = wheatNrText;
 
             weight = weight + 0.5f;
@@ -77,46 +71,54 @@ public class Inventory : MonoBehaviour
         
     }
 
-    // function for closing the bag
+    // close bag
     void Closing()
     {
         // close bag when its full
         if (weight >= 20)
         {
             bagIsActive = false;
-            //resets closed bag momentum
-            closedBag.GetComponent<Rigidbody>().isKinematic = true;
+
+            // *unkinematics your bag*
             closedBag.GetComponent<Rigidbody>().isKinematic = false;
 
-            //teleports closed bag to open bag
+            // teleports closed bag to open bag
             closedBag.transform.position = new Vector3(openBag.transform.position.x, openBag.transform.position.y - 0.3f, openBag.transform.position.z);
 
-            //makes the closed bag the inventory canvas' parent
+            // makes the closed bag the inventory canvas' parent
             inventory.transform.SetParent(closedBag.transform);
 
-            //hides open bag
+            // hides open bag
             openBag.transform.position = new Vector3(0f, 0f, 0f);
-            value = weight * 2;
-            weight = 0;
+            openBag.GetComponent<Rigidbody>().isKinematic = true;
+
+            value = weight * 2f;
+            weight = 0f;
         }
     }
+
+    // reset counters on sale
+    public void Sell()
+    {
+        Opening();
+        carrotTextGO.GetComponent<Text>().text = "0";
+        wheatTextGO.GetComponent<Text>().text = "0";
+    }
+
+    // open bag
+    void Opening()
+    {
+        bagIsActive = true;
+        
+        // unkinematic open bag
+        openBag.GetComponent<Rigidbody>().isKinematic = false;
+        // teleport open bag to closed bag
+        openBag.transform.position = new Vector3(openBag.transform.position.x, openBag.transform.position.y + 0.3f, openBag.transform.position.z);
+
+        // makes open bag inventory canvas' parent
+        inventory.transform.SetParent(closedBag.transform);
+        // hides closed bag
+        closedBag.transform.position = new Vector3(0f, 0f, 0f);
+        closedBag.GetComponent<Rigidbody>().isKinematic = true;
+    }
 }
-
-
-// this script should probably be on the "Inventory" canvas instead of Open Bag but idk it might not matter
-
-//spargalke for when the eats are sold
-/*        
-    //resets open bag momentum
-    openBag.GetComponent<Rigidbody>().isKinematic = true;
-    openBag.GetComponent<Rigidbody>().isKinematic = false;
-
-    //teleports open bag to open bag
-    openBag.transform.position = new Vector3(closedBag.transform.position.x, closedBag.transform.position.y, closedBag.transform.position.z);
-
-    //makes the open bag the inventory canvas' parent
-    inventory.transform.SetParent(openBag.transform);
-
-    //hides closed bag
-    closedBag.transform.position = new Vector3(0f, 0f, 0f);
-*/
