@@ -1,28 +1,38 @@
 using UnityEngine;
-using UnityEngine.Events;
 using System.Collections.Generic;
 
 public class WheatSeedTest : MonoBehaviour
 {
-    [SerializeField] UnityEvent plantingSFX;
-
     public GameObject WheatSmall; // Reference to the wheat prefab
 
+    private GameObject tilledDirt; 
+    private PlantingEnabler plantingEnablerScript;
+        
     private Vector3 dirtPosition;
     private Vector3 dirtSurface;
+
+
 
     private void OnCollisionEnter(Collision collider)
     {
         // Check if the seed bag is touching the dirt
         if (collider.gameObject.CompareTag("TilledDirt"))
         {
+            plantingEnablerScript = collider.gameObject.GetComponent<PlantingEnabler>(); // get the planting enabler script from tilled dirt gameobject
+
+            tilledDirt = collider.gameObject; // save gameobject of dirt
+
             dirtPosition = collider.gameObject.transform.position; // save position of dirt
 
-            plantingSFX.Invoke(); // play the planting sfx
-
-            PositionList(); // initiate wheat position list
+            gameObject.GetComponent<AudioSource>().Play(); // play the planting sfx
+            
+            if (plantingEnablerScript.plantingAllowed)
+            {
+                PositionList(); // initiate wheat position listing 
+            }
         }
     }
+
     // make a list
     private List<Vector3> wheatPositionsList = new List<Vector3>();
     // add a 5x5 vector3 grid to list
@@ -52,16 +62,14 @@ public class WheatSeedTest : MonoBehaviour
 
         // Get the top surface position of the dirt
         dirtSurface = dirtPosition + Vector3.up * dirtPosition.y / 2f;
-        Debug.Log(dirtPosition);
-        Debug.Log(dirtSurface);
 
         // Instantiate wheat at fixed locations on the top surface of the dirt
         foreach (Vector3 spawnOffset in wheatPositionsList) 
         {
             Vector3 finalSpawnPosition = dirtSurface + spawnOffset; // calculate final spawn position with an offset from list
-            Instantiate(WheatSmall, finalSpawnPosition, Quaternion.Euler(-100, 15, -85)); // instantiate wheat at the calculated position
+            GameObject wheatGameObject = Instantiate(WheatSmall, finalSpawnPosition, Quaternion.Euler(-100, 15, -85)); // instantiate wheat at the calculated position
+            wheatGameObject.transform.SetParent(tilledDirt.transform); // sets cloned wheat parent to the tilled dirt
         }
-
     }
 
     public ParticleSystem plantParticles;
@@ -70,31 +78,24 @@ public class WheatSeedTest : MonoBehaviour
     // emits particles when the wheat is planted
     private void ParticleEmit()
     {
-        plantParticlesCopy = Instantiate(plantParticles, dirtSurface, Quaternion.identity /*Quaternion.Euler(new Vector3(-90, 0, 0))*/);
+        plantParticlesCopy = Instantiate(plantParticles, dirtSurface, Quaternion.identity);
         plantParticlesCopy.transform.position = new Vector3(dirtSurface.x, dirtSurface.y+0.45f, dirtSurface.z);
         plantParticlesCopy.Emit(10);
         plantParticlesCopy.Stop();
     }
 
-    float r = 0.0549f;
-    float g = 0.396f;
-    float b = 0.0666f;
-
     public GameObject bagTop;
     public GameObject bagBottom;
-    
+    float r = 0.0549f;
     // fades color of bag to indicate uses left
     public void ColorFading()
     {
         if (r <= 0.509804)
         {
-            bagTop.GetComponent<Renderer>().material.color = new Color(r += 0.0454904f, g, b);
-            bagBottom.GetComponent<Renderer>().material.color = new Color(r += 0.0454904f, g, b);
+            bagTop.GetComponent<Renderer>().material.color = new Color(r += 0.0454904f, 0.396f, 0.0666f);
+            bagBottom.GetComponent<Renderer>().material.color = new Color(r += 0.0454904f, 0.396f, 0.0666f);
         }
-        else
-        {
-            Invoke("SeedDestruction", 3);
-        }
+        else Invoke("SeedDestruction", 3);
     }
 
     //destroys seed bag
