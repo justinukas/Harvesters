@@ -12,8 +12,6 @@ public class Foggy : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("TriggerEnter");
-
         if (collider.gameObject.tag == "Player")
         {
             playerCollided = true;

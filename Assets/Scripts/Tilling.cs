@@ -32,6 +32,7 @@ public class Tilling : MonoBehaviour
             if (TimesTilled == 3)
             {
                 dirtParticles.Emit(8);
+                dirtParticles.Stop();
                 Instantiate(tilledDirt, collidedObject.gameObject.transform.position, collidedObject.gameObject.transform.rotation);
                 Destroy(collidedObject.gameObject);
                 TimesTilled = 0;
