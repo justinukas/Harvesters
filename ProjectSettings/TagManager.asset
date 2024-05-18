@@ -9,11 +9,11 @@ TagManager:
   - Wheat
   - Water
   - TilledDirt
-  - Tilled_Dirt
   - Carrot
   - WheatSmall
-  - Render Ball
   - HarvestedWheat
+  - Tree
+  - CutTree
   layers:
   - Default
   - TransparentFX
