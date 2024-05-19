@@ -8,14 +8,10 @@ public class TreeCutting : MonoBehaviour
 
     private TimesCut counterScript;
 
-    private GameObject collidedTree;
-
-
     private GameObject theTree;
 
     private void OnCollisionEnter(Collision collider)
     {
-        Debug.Log("collided");
         if (collider.gameObject.CompareTag("Tree") && Time.time > cooldown)
         {
             cooldown = Time.time + cooldownInterval;
@@ -25,6 +21,7 @@ public class TreeCutting : MonoBehaviour
             counterScript = theTree.GetComponent<TimesCut>();
             
             gameObject.GetComponent<AudioSource>().Play();
+            gameObject.GetComponentInChildren<ParticleSystem>().Emit(20);
 
             counterScript.timesCut += 1;
             if (counterScript.timesCut >= 3)
