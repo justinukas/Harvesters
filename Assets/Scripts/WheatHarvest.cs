@@ -13,7 +13,7 @@ public class WheatHarvest : MonoBehaviour
             collider.gameObject.tag = "HarvestedWheat";
             collider.gameObject.GetComponent<Rigidbody>().isKinematic = false;
 
-            gameObject.transform.parent.GetComponent<AudioSource>().Play();
+            gameObject.GetComponent<AudioSource>().Play();
 
             inventoryScript.WheatCollection();
             destructionScript.DestructionInitiator();

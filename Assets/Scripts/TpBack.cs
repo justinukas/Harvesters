@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TpBack : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void OnCollisionEnter (Collision collider)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (collider.gameObject.transform.parent != null)
+        {
+            collider.gameObject.transform.parent.position = new Vector3(114f, 3f, 38f);
+            Debug.Log(collider.gameObject.transform.parent.position);
+        }
+        if(collider.gameObject.transform.parent == null)
+        {
+            collider.gameObject.transform.position = new Vector3(114f, 3f, 38f);
+        }
     }
 }

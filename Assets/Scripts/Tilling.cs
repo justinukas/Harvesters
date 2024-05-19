@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class Tilling : MonoBehaviour
 {
-    public Rigidbody tilledDirt;
+    public GameObject tilledDirt;
 
     public ParticleSystem ParticleSystem;
     private ParticleSystem dirtParticles;
