@@ -22,10 +22,9 @@ public class WheatSeed : MonoBehaviour
 
             dirtPosition = collider.gameObject.transform.position; // save position of dirt
 
-            gameObject.GetComponent<AudioSource>().Play(); // play the planting sfx
-            
             if (plantingEnablerScript.plantingAllowed)
             {
+                gameObject.GetComponent<AudioSource>().Play(); // play the planting sfx
                 PositionList(); // initiate wheat position listing 
             }
         }
