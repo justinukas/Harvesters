@@ -1,12 +1,11 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class WheatHarvest : MonoBehaviour
 { 
     private void OnCollisionEnter(Collision collider)
     {
         WheatDestruction destructionScript = collider.gameObject.GetComponent<WheatDestruction>();
-        Inventory inventoryScript = GameObject.Find("Open Bag").GetComponent<Inventory>();
+        OpenBagInventory inventoryScript = GameObject.Find("Open Bag").GetComponent<OpenBagInventory>();
 
         if (collider.gameObject.CompareTag("WheatSmall") && inventoryScript.bagIsActive == true)
         {

@@ -1,51 +1,113 @@
 using UnityEngine;
-using UnityEngine.Events;
+using System.Collections.Generic;
 
-public class CarrotSeedInteraction : MonoBehaviour
+public class CarrotSeed : MonoBehaviour
 {
-    [SerializeField] UnityEvent PopSFX;
+    float r; // R value for bag color RGB
+    int timesUsed = 0; // measurement for bag uses
 
-    public GameObject Carrot;
-
-    private void OnCollisionEnter(Collision other)
+    // renders bag unusable on game start
+    void Start()
     {
-        // Check if the seed touches the dirt
-        if (other.gameObject.CompareTag("TilledDirt"))
+        timesUsed = 11; 
+        r = 0.509804f; // sets r to final value
+    }
+
+    public void Bought()
+    {
+        timesUsed = 0;
+        r = 0.0549f; // sets r to starter value
+    }
+
+    private GameObject tilledDirt;
+    private void OnCollisionEnter(Collision collider)
+    {
+        // Check if the seed bag is touching the dirt
+        if (collider.gameObject.CompareTag("TilledDirt"))
         {
-            PopSFX.Invoke();
-            SpawnCarrots(other.gameObject.transform);
-            Destroy(gameObject);
+            // save gameobject of dirt
+            tilledDirt = collider.gameObject;
+
+            // get the planting enabler script from tilled dirt gameobject
+            PlantingEnabler plantingEnablerScript = collider.gameObject.GetComponent<PlantingEnabler>();
+
+            // check if planting is allowed and if timesUsed doesnt exceed 10
+            if (plantingEnablerScript.plantingAllowed == true && timesUsed <= 10)
+            {
+                timesUsed += 1;
+                SpawnCarrot();
+            }
         }
     }
 
-    void SpawnCarrots(Transform dirtTransform)
+    // make a list for carrot positions for SpawnCarrot method
+    private Vector3[] carrotPositions = new Vector3[]
     {
+            new Vector3(-0.4f, 0.22f, -0.4f), //bottom right
+            new Vector3(0f, 0.22f, -0.4f), //middle right
+            new Vector3(0f, 0.22f, -0.05f), //middle
+            new Vector3(0f, 0.22f, 0.3f), //middle left
+            new Vector3(0.4f, 0.22f, -0.4f), //top right
+            new Vector3(-0.4f, 0.22f, 0.3f), //bottom left
+            new Vector3(0.4f, 0.22f, 0.3f), //top right
+            new Vector3(0.4f, 0.22f, -0.05f), //middle top
+            new Vector3(-0.4f, 0.22f, -0.05f), //middle bottom
+    };
+
+    private Vector3 dirtSurface;
+    public GameObject Carrot; // Reference to the carrot prefab
+
+    private void SpawnCarrot()
+    {
+        Vector3 dirtPosition = tilledDirt.transform.position;
         // Get the top surface position of the dirt
-        Vector3 spawnPosition = dirtTransform.position + Vector3.up * dirtTransform.localScale.y / 2f;
+        dirtSurface = dirtPosition + Vector3.up * dirtPosition.y / 2f;
 
-        // Define fixed spawn positions relative to the top surface of the dirt
-        Vector3[] fixedSpawnOffsets = new Vector3[]
+        // Instantiate carrot at fixed locations on the top surface of the dirt
+        foreach (Vector3 spawnOffset in carrotPositions)
         {
-            new Vector3(-0.4f, -0.2f, -0.4f), //bottom right
-            new Vector3(0f, -0.2f, -0.4f), //middle right
-            new Vector3(0f, -0.2f, -0.05f), //middle
-            new Vector3(0f, -0.2f, 0.3f), //middle left
-            new Vector3(0.4f, -0.2f, -0.4f), //top right
-            new Vector3(-0.4f, -0.2f, 0.3f), //bottom left
-            new Vector3(0.4f, -0.2f, 0.3f), //top right
-            new Vector3(0.4f, -0.2f, -0.05f), //middle top
-            new Vector3(-0.4f, -0.2f, -0.05f), //middle bottom
-        };
-
-        // Instantiate carrots at fixed locations on the top surface of the dirt
-        foreach (Vector3 offset in fixedSpawnOffsets)
-        {
-            // Calculate final spawn position with fixed offset
-            Vector3 finalSpawnPosition = spawnPosition + offset;
-
-            // Instantiate wheat at the calculated position
-            Instantiate(Carrot, finalSpawnPosition, Quaternion.identity);
+            Vector3 finalSpawnPosition = dirtSurface + spawnOffset; // calculate final spawn position with an offset from list
+            GameObject carrotGameObject = Instantiate(Carrot, finalSpawnPosition, Quaternion.identity); // instantiate carrot at the calculated position
+            carrotGameObject.transform.SetParent(tilledDirt.transform); // sets cloned carrot parent to the tilled dirt
         }
+        ParticleEmit();
     }
 
+    // reference to particle systems
+    public ParticleSystem plantParticles;
+
+    // emits particles when the carrot is planted
+    private void ParticleEmit()
+    {
+        ParticleSystem plantParticlesCopy = Instantiate(plantParticles, dirtSurface, Quaternion.identity);
+
+        plantParticlesCopy.transform.position = new Vector3(dirtSurface.x, dirtSurface.y + 0.45f, dirtSurface.z);
+
+        plantParticlesCopy.Emit(10);
+        plantParticlesCopy.Stop();
+        SFX();
+    }
+
+    //play planting sfx
+    private void SFX()
+    {
+        gameObject.GetComponent<AudioSource>().Play();
+        ColorFading();
+    }
+
+    public GameObject bagTop;
+    public GameObject bagBottom;
+
+    // fades color of bag to indicate uses left
+    private void ColorFading()
+    {
+        r += 0.0454904f;
+    }
+
+    // updates wheatseed color every frame
+    private void Update()
+    {
+        bagTop.GetComponent<Renderer>().material.color = new Color(r, 0.396f, 0.0666f);
+        bagBottom.GetComponent<Renderer>().material.color = new Color(r, 0.396f, 0.0666f);
+    }
 }

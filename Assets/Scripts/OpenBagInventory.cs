@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour
+public class OpenBagInventory : MonoBehaviour
 {
     // bag variants
     private GameObject closedBag;
