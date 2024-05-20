@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class CarrotSeed : MonoBehaviour
 {
     float r; // R value for bag color RGB
-    int timesUsed = 0; // measurement for bag uses
+    public int timesUsed = 0; // measurement for bag uses
 
     // renders bag unusable on game start
     void Start()
