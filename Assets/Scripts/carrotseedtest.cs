@@ -3,36 +3,44 @@ using System.Collections.Generic;
 
 public class CarrotSeed : MonoBehaviour
 {
-    public GameObject Carrot; // Reference to the carrot prefab
+    float r; // starting r value for bag color RGB value
+    int timesUsed = 0; // measurement for bag uses
 
-    private GameObject tilledDirt; 
-    private PlantingEnabler plantingEnablerScript;
-        
-    private Vector3 dirtPosition;
-    private Vector3 dirtSurface;
+    // renders bag unusable on game start
+    void Start()
+    {
+        timesUsed = 11; 
+        r = 0.509804f; // sets r to final value
+    }
 
+    public void Bought()
+    {
+        timesUsed = 0;
+        r = 0.0549f; // sets r to starter value
+    }
+
+    private GameObject tilledDirt;
     private void OnCollisionEnter(Collision collider)
     {
         // Check if the seed bag is touching the dirt
         if (collider.gameObject.CompareTag("TilledDirt"))
         {
-            plantingEnablerScript = collider.gameObject.GetComponent<PlantingEnabler>(); // get the planting enabler script from tilled dirt gameobject
+            // save gameobject of dirt
+            tilledDirt = collider.gameObject;
 
-            tilledDirt = collider.gameObject; // save gameobject of dirt
+            // get the planting enabler script from tilled dirt gameobject
+            PlantingEnabler plantingEnablerScript = collider.gameObject.GetComponent<PlantingEnabler>();
 
-            dirtPosition = collider.gameObject.transform.position; // save position of dirt
-            
-            if (plantingEnablerScript.plantingAllowed)
+            // check if planting is allowed and if timesUsed doesnt exceed 10
+            if (plantingEnablerScript.plantingAllowed && timesUsed <= 10)
             {
                 gameObject.GetComponent<AudioSource>().Play(); // play the planting sfx
                 SpawnCarrot();
-                ParticleEmit();
-                ColorFading();
             }
         }
     }
 
-    // make a list for carrot positions
+    // make a list for carrot positions for SpawnCarrot method
     private Vector3[] carrotPositions = new Vector3[]
     {
             new Vector3(-0.4f, 0.22f, -0.4f), //bottom right
@@ -45,51 +53,50 @@ public class CarrotSeed : MonoBehaviour
             new Vector3(0.4f, 0.22f, -0.05f), //middle top
             new Vector3(-0.4f, 0.22f, -0.05f), //middle bottom
     };
-    
-    // spawns carrot at set positions 
+
+    private Vector3 dirtSurface;
+    public GameObject Carrot; // Reference to the carrot prefab
+
     private void SpawnCarrot()
     {
+        Vector3 dirtPosition = tilledDirt.transform.position;
         // Get the top surface position of the dirt
         dirtSurface = dirtPosition + Vector3.up * dirtPosition.y / 2f;
 
         // Instantiate carrot at fixed locations on the top surface of the dirt
-        foreach (Vector3 spawnOffset in carrotPositions) 
+        foreach (Vector3 spawnOffset in carrotPositions)
         {
             Vector3 finalSpawnPosition = dirtSurface + spawnOffset; // calculate final spawn position with an offset from list
             GameObject carrotGameObject = Instantiate(Carrot, finalSpawnPosition, Quaternion.identity); // instantiate carrot at the calculated position
             carrotGameObject.transform.SetParent(tilledDirt.transform); // sets cloned carrot parent to the tilled dirt
         }
+        ParticleEmit();
     }
 
+    // reference to particle systems
     public ParticleSystem plantParticles;
-    private ParticleSystem plantParticlesCopy;
 
     // emits particles when the carrot is planted
     private void ParticleEmit()
     {
-        plantParticlesCopy = Instantiate(plantParticles, dirtSurface, Quaternion.identity);
-        plantParticlesCopy.transform.position = new Vector3(dirtSurface.x, dirtSurface.y+0.45f, dirtSurface.z);
+        ParticleSystem plantParticlesCopy = Instantiate(plantParticles, dirtSurface, Quaternion.identity);
+
+        plantParticlesCopy.transform.position = new Vector3(dirtSurface.x, dirtSurface.y + 0.45f, dirtSurface.z);
+
         plantParticlesCopy.Emit(10);
         plantParticlesCopy.Stop();
+
+        ColorFading();
     }
 
     public GameObject bagTop;
     public GameObject bagBottom;
-    float r = 0.0549f;
     // fades color of bag to indicate uses left
     public void ColorFading()
     {
-        if (r <= 0.509804)
-        {
-            bagTop.GetComponent<Renderer>().material.color = new Color(r += 0.0454904f, 0.396f, 0.0666f);
-            bagBottom.GetComponent<Renderer>().material.color = new Color(r += 0.0454904f, 0.396f, 0.0666f);
-        }
-        else Invoke("SeedDestruction", 3);
-    }
+        timesUsed += 1;
 
-    //destroys seed bag
-    void SeedDestruction()
-    {
-        Destroy(gameObject);
+        bagTop.GetComponent<Renderer>().material.color = new Color(r += 0.0454904f, 0.396f, 0.0666f);
+        bagBottom.GetComponent<Renderer>().material.color = new Color(r += 0.0454904f, 0.396f, 0.0666f);
     }
 }
