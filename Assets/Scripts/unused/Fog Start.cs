@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Foggy : MonoBehaviour {
-    /*float min = 0.003F;
-    float max = 0.25F;
-    float t = 0.001F;*/
+public class Foggy : MonoBehaviour 
+{
     float r;
     float g;
     float b;
@@ -14,17 +12,14 @@ public class Foggy : MonoBehaviour {
     {
         if (collider.gameObject.tag == "Player")
         {
-            playerCollided = true;
-               // RenderSettings.fogDensity += 2f * Time.deltaTime;
-            
-          //  RenderSettings.fogDensity = Mathf.Lerp(min, max, t);
-        
+            playerCollided = true;       
         }
     }
-    void onTriggerExit(Collider collider)
+    void OnTriggerExit(Collider collider)
     {
         if (collider.gameObject.tag == "Player")
         {
+            Debug.Log("trigger exit");
             playerCollided = false;
         }
         
@@ -32,7 +27,7 @@ public class Foggy : MonoBehaviour {
 
     void Update() 
     {
-        if (playerCollided && RenderSettings.fogDensity < 0.5f)
+        if (playerCollided == true && RenderSettings.fogDensity < 0.5f)
         {
             RenderSettings.fogDensity += Time.deltaTime/8;
             r = 0.23f;
@@ -40,13 +35,29 @@ public class Foggy : MonoBehaviour {
             b = 0.23f;
             RenderSettings.fogColor = new Color(r, g, b);
         }
-        if (playerCollided == false && RenderSettings.fogDensity >= 0f && r <= 0.937f && g <= 1f && b <= 0.682)
+
+        if (playerCollided == false)
         {
-            Debug.Log("decreasing fog");
-            RenderSettings.fogDensity -= Time.deltaTime / 8;
-            r += Time.deltaTime / 8;
-            g += Time.deltaTime / 8;
-            b += Time.deltaTime / 8;
+            if (RenderSettings.fogDensity >= 0.003f) 
+            {
+                RenderSettings.fogDensity -= Time.deltaTime / 8;
+            }
+            if (RenderSettings.fogDensity <= 0.003f)
+            {
+                RenderSettings.fogDensity += Time.deltaTime / 8;
+            }
+            if (r <= 0.9372549f)
+            {
+                r += Time.deltaTime / 9;
+            }
+            if (g <= 1f)
+            {
+                g += Time.deltaTime / 8;
+            }
+            if (b <= 0.682353)
+            {
+                b += Time.deltaTime / 12;
+            }
             RenderSettings.fogColor = new Color(r, g, b);
         }
     }
