@@ -43,15 +43,15 @@ public class CarrotSeed : MonoBehaviour
     // make a list for carrot positions for SpawnCarrot method
     private Vector3[] carrotPositions = new Vector3[]
     {
-            new Vector3(-0.4f, 0.22f, -0.4f), //bottom right
-            new Vector3(0f, 0.22f, -0.4f), //middle right
-            new Vector3(0f, 0.22f, -0.05f), //middle
-            new Vector3(0f, 0.22f, 0.3f), //middle left
-            new Vector3(0.4f, 0.22f, -0.4f), //top right
-            new Vector3(-0.4f, 0.22f, 0.3f), //bottom left
-            new Vector3(0.4f, 0.22f, 0.3f), //top right
-            new Vector3(0.4f, 0.22f, -0.05f), //middle top
-            new Vector3(-0.4f, 0.22f, -0.05f), //middle bottom
+            new Vector3(-0.4f, 0.07f, -0.4f), //bottom right
+            new Vector3(0f, 0.07f, -0.4f), //middle right
+            new Vector3(0f, 0.07f, -0.05f), //middle
+            new Vector3(0f, 0.07f, 0.3f), //middle left
+            new Vector3(0.4f, 0.07f, -0.4f), //top right
+            new Vector3(-0.4f, 0.07f, 0.3f), //bottom left
+            new Vector3(0.4f, 0.07f, 0.3f), //top right
+            new Vector3(0.4f, 0.07f, -0.05f), //middle top
+            new Vector3(-0.4f, 0.07f, -0.05f), //middle bottom
     };
 
     private Vector3 dirtSurface;
