@@ -11,7 +11,10 @@ public class PlantingEnabler : MonoBehaviour
         {
             plantingAllowed = false;
         }
-        else plantingAllowed = true;
         
+        if (transform.childCount <= 0)
+        {
+            plantingAllowed = true;
+        }
     }   
 }

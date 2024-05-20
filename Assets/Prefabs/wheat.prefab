@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3228980381494682891}
   - component: {fileID: 8270013585371423460}
   - component: {fileID: 6838124844866751840}
+  - component: {fileID: 2070963400022220137}
   m_Layer: 0
   m_Name: Wheat
   m_TagString: WheatSmall
@@ -147,3 +148,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e73d315b1e237048a2e64af4f6609f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2070963400022220137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4487536356744293940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70e03ada485d94458dd74388657fa94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHarvestable: 0
