@@ -16,6 +16,8 @@ TagManager:
   - CutTree
   - WheatBag
   - CarrotBag
+  - Open Bag
+  - Closed Bag
   layers:
   - Default
   - TransparentFX
