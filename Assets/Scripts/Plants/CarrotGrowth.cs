@@ -14,11 +14,15 @@ public class CarrotGrowth : MonoBehaviour
         {
             DisableGrabbing.Invoke();
             gameObject.transform.position = new Vector3(transform.position.x, transform.position.y + (Time.deltaTime * growthRate)/120, transform.position.z);
+            
         }
 
         if (gameObject.transform.position.y >= 0.27f)
         {
             EnableGrabbing.Invoke();
+            transform.SetParent(null, true);
+            CarrotGrowth carrotGrowth = gameObject.GetComponent<CarrotGrowth>();
+            carrotGrowth.enabled = false;
         }
     }
 }
