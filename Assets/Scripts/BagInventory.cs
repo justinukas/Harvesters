@@ -68,11 +68,6 @@ public class BagInventory : MonoBehaviour
         }   
     }
 
-    void Update()
-    {
-        Closing();
-    }
-
     // close bag
     void Closing()
     {
@@ -101,6 +96,8 @@ public class BagInventory : MonoBehaviour
     {
         Opening();
         value = 0f;
+        carrotNr = 0;
+        wheatNr = 0;
         carrotTextGO.GetComponent<Text>().text = "0";
         wheatTextGO.GetComponent<Text>().text = "0";
     }
