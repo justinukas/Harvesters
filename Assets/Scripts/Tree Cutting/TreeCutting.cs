@@ -21,7 +21,7 @@ public class TreeCutting : MonoBehaviour
             if (collider.gameObject.CompareTag("Tree") && cooldown <= 0 && canCut == true && contactPoint.thisCollider.gameObject.name == "Cube")
             {
                 canCut = false;
-                cooldown = 1f; // reset cooldown timer
+                cooldown = 0.5f; // reset cooldown timer
 
                 theTree = collider.gameObject;
 
