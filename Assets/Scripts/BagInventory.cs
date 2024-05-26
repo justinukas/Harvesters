@@ -43,7 +43,7 @@ public class BagInventory : MonoBehaviour
             carrotTextGO = GameObject.Find("Carrot Nr");
             carrotTextGO.GetComponent<Text>().text = carrotNrText;
 
-            weight += 2f;
+            weight += 1f;
             Destroy(collider.gameObject);
             Closing();
         }

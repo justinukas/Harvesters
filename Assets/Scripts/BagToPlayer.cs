@@ -8,13 +8,10 @@ public class BagToPlayer : MonoBehaviour
     public Transform bag;
 
     private float travelTime = 10f;
-    private float speed = 1f;
+
+    private float speed = 0.25f; // must be a value from 0f to 1f
 
     private float startTime;
-    private Vector3 center;
-    private Vector3 startCenter;
-    private Vector3 endCenter;
-
 
     public void StartMoving()
     {
@@ -24,25 +21,26 @@ public class BagToPlayer : MonoBehaviour
 
     void Update()
     {
-
-        GetCenter();
         if (move == true)
         {
-            float fracComplete = (Time.time - startTime) / travelTime * speed;
-            bag.position = Vector3.Slerp(startCenter, endCenter, fracComplete * speed);
+            Vector3 center = (bag.position + player.position) / 2f;
+
+            center -= new Vector3(0, 1, 0);
+
+            Vector3 bagCenter = bag.position - center;
+
+            Vector3 playerCenter = player.position - center;
+
+            float fracComplete = (Time.time - startTime) / travelTime;
+
+            bag.position = Vector3.Slerp(bagCenter, playerCenter, fracComplete * speed);
+
             bag.position += center;
+
         }
-        if (Vector3.Distance(bag.position, player.position) < 2)
+        if (Vector3.Distance(bag.position, player.position) < 1)
         {
             move = false;
         }
-    }
-
-    void GetCenter()
-    {
-        center = (bag.position + player.position) * 0.5f;
-        center -= new Vector3 (0, 3, 0);
-        startCenter = bag.position - center;
-        endCenter = player.position - center;
     }
 }
