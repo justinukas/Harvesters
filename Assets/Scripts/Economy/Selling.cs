@@ -12,10 +12,7 @@ public class Selling : MonoBehaviour
 
             if (collider.gameObject.tag == "Closed Bag")
             {
-                float bagValue = inventoryScript.value;
-                float moneyNum = moneyCounterScript.moneyNr;
-
-                moneyNum += bagValue;
+                moneyCounterScript.moneyNr += inventoryScript.value;
 
                 inventoryScript.Sell();
                 bagToPlayerScript.StartMoving();

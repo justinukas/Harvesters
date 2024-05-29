@@ -9,6 +9,7 @@ public class BagInventory : MonoBehaviour
     // text gameobjects
     private GameObject carrotTextGO;
     private GameObject wheatTextGO;
+
     private void Start()
     {
         bagMesh = gameObject.GetComponent<MeshFilter>();
@@ -35,7 +36,7 @@ public class BagInventory : MonoBehaviour
     // put carrots in bag
     void OnCollisionEnter(Collision collider)
     {
-        if (bagIsOpen && collider.gameObject.CompareTag("Carrot"))
+        if (bagIsOpen && collider.gameObject.CompareTag("Carrot") && collider.gameObject.transform.parent == null)
         {
             carrotNr += 1;
             string carrotNrText = carrotNr.ToString();
@@ -96,6 +97,7 @@ public class BagInventory : MonoBehaviour
     {
         Opening();
         value = 0f;
+        weight = 0f;
         carrotNr = 0;
         wheatNr = 0;
         carrotTextGO.GetComponent<Text>().text = "0";
