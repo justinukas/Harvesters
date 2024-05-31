@@ -16,6 +16,7 @@ public class Selling : MonoBehaviour
 
                 inventoryScript.Sell();
                 bagToPlayerScript.StartMoving();
+                Leave();
             }
 
             if (collider.gameObject.tag == "Open Bag")
@@ -28,5 +29,11 @@ public class Selling : MonoBehaviour
         {
             collider.gameObject.transform.position = new Vector3(114f, 3f, 38f);
         }
+    }
+
+    private void Leave()
+    {
+        Animator boatAnimator = gameObject.transform.parent.GetComponent<Animator>();
+        boatAnimator.SetTrigger("triggerLeave");
     }
 }
