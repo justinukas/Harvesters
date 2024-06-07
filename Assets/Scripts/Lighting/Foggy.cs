@@ -7,7 +7,7 @@ public class Foggy : MonoBehaviour
     float g;
     float b;
 
-    bool? playerCollided = null;
+    bool playerCollided = false;
 
     public Light directionalLight;
 
@@ -27,11 +27,11 @@ public class Foggy : MonoBehaviour
         
     }
 
-    void Update() 
+    void Update()
     {
         if (playerCollided == true && RenderSettings.fogDensity < 0.5f)
         {
-            RenderSettings.fogDensity += Time.deltaTime/8;
+            RenderSettings.fogDensity += Time.deltaTime / 8;
             r = 0.23f;
             g = 0.23f;
             b = 0.23f;
@@ -40,7 +40,7 @@ public class Foggy : MonoBehaviour
 
         if (playerCollided == false)
         {
-            if (RenderSettings.fogDensity >= 0.003f) 
+            if (RenderSettings.fogDensity >= 0.003f)
             {
                 RenderSettings.fogDensity -= Time.deltaTime / 8;
             }
@@ -62,6 +62,14 @@ public class Foggy : MonoBehaviour
             }
             RenderSettings.fogColor = new Color(r, g, b);
         }
-        playerCollided = null;
+
+        if (playerCollided && directionalLight.intensity > 0)
+        {
+            directionalLight.intensity -= Time.deltaTime / 2;
+        }
+        if (playerCollided == false && directionalLight.intensity <= 1)
+        {
+            directionalLight.intensity += Time.deltaTime / 2;
+        }
     }
 }
