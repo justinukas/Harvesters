@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: d1651f637c7e7d247ac8fed28b3b538b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - tilledDirt: {fileID: 7667814637067432998, guid: 3a3c9a808f4ab104e9c5fe46db42adfc, type: 3}
+  - dirt: {fileID: 6059380895877456232, guid: 8d9264d4e011f8749982ee37167f07ce, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
