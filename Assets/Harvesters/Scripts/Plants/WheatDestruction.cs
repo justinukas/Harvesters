@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WheatDestruction : MonoBehaviour
 {
-    public void DestructionInitiator()
+    public void InvokeWheatDestruction()
     {
         Invoke("Destruction", 1.5f);
     }

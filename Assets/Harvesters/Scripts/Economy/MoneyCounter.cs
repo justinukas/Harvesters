@@ -3,11 +3,16 @@ using UnityEngine.UI;
 
 public class MoneyCounter : MonoBehaviour
 {
-    public float moneyNr;
+    [HideInInspector] public float moneyNr;
     private string moneyText;
 
-    // update amount of money every frame
-    void Update()
+    private void Start()
+    {
+        moneyNr = 100;
+        UpdateMoneyCount();
+    }
+
+    public void UpdateMoneyCount()
     {
         // converts int to string
         moneyText = moneyNr.ToString();

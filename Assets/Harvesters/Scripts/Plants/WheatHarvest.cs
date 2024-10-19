@@ -2,25 +2,33 @@ using UnityEngine;
 
 public class WheatHarvest : MonoBehaviour
 {
-    public GameObject OpenBag;
+    private BagInventory BagInventory;
+
+    private void Start()
+    {
+        BagInventory = GameObject.FindGameObjectWithTag("Bag").GetComponent<BagInventory>();
+    }
 
     private void OnCollisionEnter(Collision collider)
     {
-        WheatDestruction destructionScript = collider.gameObject.GetComponent<WheatDestruction>();
-        WheatGrowth growthScript = collider.gameObject.GetComponent<WheatGrowth>();
-        BagInventory inventoryScript = GameObject.Find("Bag").GetComponent<BagInventory>();
-
-        foreach (ContactPoint contactPoint in collider.contacts) // this foreach is for checking for the correct local collider
+        foreach (ContactPoint contactPoint in collider.contacts) // this foreach is for checking for the correct local collider, the head of the scythe   
         {
-            if (collider.gameObject.CompareTag("WheatSmall") && inventoryScript.bagIsOpen == true && growthScript.isHarvestable == true && contactPoint.thisCollider.gameObject.name == "Head")
+            if (contactPoint.otherCollider.gameObject.GetComponent<WheatDestruction>())
             {
-                collider.gameObject.tag = "HarvestedWheat";
-                collider.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                WheatDestruction WheatDestruction = contactPoint.otherCollider.gameObject.GetComponent<WheatDestruction>();
+                Harvestability Harvestability = contactPoint.otherCollider.gameObject.GetComponent<Harvestability>();
 
-                gameObject.GetComponent<AudioSource>().Play();
+                if (collider.gameObject.CompareTag("WheatSmall") && contactPoint.thisCollider.gameObject.name == "Head" && BagInventory.isBagOpen == true &&
+                    Harvestability.isHarvestable == true)
+                {
+                    collider.gameObject.tag = "HarvestedWheat";
+                    collider.gameObject.GetComponent<Rigidbody>().isKinematic = false;
 
-                inventoryScript.WheatCollection();
-                destructionScript.DestructionInitiator();
+                    gameObject.GetComponent<AudioSource>().Play();
+
+                    BagInventory.WheatCollection();
+                    WheatDestruction.InvokeWheatDestruction();
+                }
             }
         }
     }
