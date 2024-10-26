@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemDatabase : MonoBehaviour
+public class ItemDatabasee : MonoBehaviour
 {
     [System.Serializable]
-    public class ItemData
+    public class Item
     {
+        public int ID;
         public string itemName;
         public GameObject itemObject;
         public GameObject itemSprite;
@@ -16,5 +17,5 @@ public class ItemDatabase : MonoBehaviour
         Tool,
         Crop
     }    
-    public List<ItemData> items;
+    public List<Item> items;
 }
