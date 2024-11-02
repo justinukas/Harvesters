@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class FaceCamera : MonoBehaviour
 {
-    public Camera MainCamera;
+    private Camera MainCamera;
+
+    private void Start()
+    {
+        MainCamera = Camera.main;
+    }
     void Update()
     {
         transform.forward = MainCamera.transform.forward;
