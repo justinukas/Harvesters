@@ -1,9 +1,10 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class TreeCutting : MonoBehaviour
 {
-    private float cooldown = 0.5f;
+    private float cooldown = 0.2f;
+    private GameObject theTree;
+    private bool canCut = true;
 
     // cooldown timer method
     private void Update()
@@ -11,17 +12,14 @@ public class TreeCutting : MonoBehaviour
         cooldown -= Time.deltaTime;
     }
 
-    private GameObject theTree;
-    public bool canCut = true;
-
     private void OnCollisionEnter(Collision collider)
     {
         foreach (ContactPoint contactPoint in collider.contacts) // this foreach is for checking if the collider colliding is the one of the axe's head
         {
-            if (collider.gameObject.CompareTag("Tree") && cooldown <= 0 && canCut == true && contactPoint.thisCollider.gameObject.name == "Cube")
+            if (collider.gameObject.CompareTag("Tree") && cooldown <= 0 && canCut == true && contactPoint.thisCollider.gameObject.name == "Head")
             {
                 canCut = false;
-                cooldown = 0.5f; // reset cooldown timer
+                cooldown = 0.2f; // reset cooldown timer
 
                 theTree = collider.gameObject;
 
@@ -29,7 +27,7 @@ public class TreeCutting : MonoBehaviour
                 TreeDestruction destructionScript = theTree.GetComponent<TreeDestruction>();
 
                 gameObject.GetComponent<AudioSource>().Play();
-                gameObject.GetComponentInChildren<ParticleSystem>().Emit(20);
+                gameObject.transform.Find("Head").Find("Particles").GetComponent<ParticleSystem>().Emit(20);
 
                 counterScript.timesCut += 1;
                 if (counterScript.timesCut >= 3)
@@ -37,7 +35,7 @@ public class TreeCutting : MonoBehaviour
                     theTree.tag = "CutTree";
 
                     theTree.GetComponent<Rigidbody>().isKinematic = false;
-                    theTree.GetComponent<Rigidbody>().AddForce(transform.position.x + 4f, transform.position.y + 4f, transform.position.z + 4f);
+                    theTree.GetComponent<Rigidbody>().AddForce(transform.forward * 2);
                     destructionScript.DestructionInitiator();
                 }
             }

@@ -17,6 +17,8 @@ TagManager:
   - WheatBag
   - CarrotBag
   - Bag
+  - WheatParent
+  - CarrotParent
   layers:
   - Default
   - TransparentFX

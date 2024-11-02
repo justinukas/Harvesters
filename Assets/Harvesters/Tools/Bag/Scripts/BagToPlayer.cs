@@ -4,13 +4,11 @@ public class BagToPlayer : MonoBehaviour
 {
     public bool move;
 
-    public Transform player;
-    public Transform bag;
+    [SerializeField] private Transform player;
+    [SerializeField] private Transform bag;
 
     private float travelTime = 10f;
-
     private float speed = 0.25f; // must be a value from 0f to 1f
-
     private float startTime;
 
     public void StartMoving()
@@ -19,7 +17,7 @@ public class BagToPlayer : MonoBehaviour
         startTime = Time.time;
     }
 
-    void Update()
+    private void Update()
     {
         if (move == true)
         {
