@@ -59,7 +59,6 @@ public class PlantGrowth : MonoBehaviour
             foreach (Transform child in plantParent.transform)
             {
                 Harvestability harvestability = child.GetComponent<Harvestability>();
-                harvestability.isHarvestable = true;
                 harvestability.MakeHarvestable();
 
                 if (plantType.GrownColor != null)

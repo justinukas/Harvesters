@@ -18,8 +18,7 @@ public class WheatHarvest : MonoBehaviour
                 WheatDestruction WheatDestruction = contactPoint.otherCollider.gameObject.GetComponent<WheatDestruction>();
                 Harvestability Harvestability = contactPoint.otherCollider.gameObject.GetComponent<Harvestability>();
 
-                if (collider.gameObject.CompareTag("WheatSmall") && contactPoint.thisCollider.gameObject.name == "Head" && BagInventory.isBagOpen == true &&
-                    Harvestability.isHarvestable == true)
+                if (collider.gameObject.CompareTag("WheatSmall") && contactPoint.thisCollider.gameObject.name == "Head" && BagInventory.isBagOpen == true)
                 {
                     collider.gameObject.tag = "HarvestedWheat";
                     collider.gameObject.GetComponent<Rigidbody>().isKinematic = false;
