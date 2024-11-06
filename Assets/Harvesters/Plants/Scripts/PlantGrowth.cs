@@ -67,6 +67,9 @@ public class PlantGrowth : MonoBehaviour
                 }
             }
         }
-        if (plantParentTransform.childCount == 0) plantParentTransform.position = Vector3.zero;
+        if (plantParentTransform.childCount == 0)
+        {
+            plantParentTransform.position = Vector3.zero;
+        }
     }
 }

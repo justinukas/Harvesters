@@ -6,6 +6,7 @@ public class BagInventory : MonoBehaviour
     [Header("Counters")]
     [SerializeField] private GameObject carrotCounter;
     [SerializeField] private GameObject wheatCounter;
+    [SerializeField] private GameObject appleCounter;
 
     [Header("Meshes")]
     [SerializeField] private Mesh closedBagMesh;
@@ -17,6 +18,7 @@ public class BagInventory : MonoBehaviour
     // crop counters
     private int carrotCount = 0;
     private int wheatCount = 0;
+    private int appleCount = 0;
 
     // fullness measurement
     [HideInInspector] public float weight = 0;
@@ -38,20 +40,39 @@ public class BagInventory : MonoBehaviour
     // put carrot in bag
     private void OnCollisionEnter(Collision collider)
     {
-        if (isBagOpen && collider.gameObject.CompareTag("Carrot") && collider.gameObject.transform.parent == null)
+        if (isBagOpen && collider.gameObject.transform.parent == null)
         {
-            string plant = "Carrot";
-            bagUI.SpawnUI(plant);
+            if (collider.gameObject.CompareTag("Carrot"))
+            {
+                string plant = "Carrot";
+                bagUI.SpawnUI(plant);
 
-            carrotCount += 1;
-            string carrotCounterText = carrotCount.ToString();
+                carrotCount += 1;
+                string carrotCounterText = carrotCount.ToString();
 
-            carrotCounter.GetComponent<Text>().text = carrotCounterText;
+                carrotCounter.GetComponent<Text>().text = carrotCounterText;
 
-            weight += 1f;
+                weight += 1f;
 
-            Destroy(collider.gameObject); // destroy carrot
-            CloseBag();
+                Destroy(collider.gameObject); // destroy carrot
+                CloseBag();
+            }
+
+            else if (collider.gameObject.CompareTag("Apple"))
+            {
+                string plant = "Apple";
+                bagUI.SpawnUI(plant);
+
+                appleCount += 1;
+                string appleCounterText = appleCount.ToString();
+
+                appleCounter.GetComponent<Text>().text = appleCounterText;
+
+                weight += 3f;
+
+                Destroy(collider.gameObject);
+                CloseBag();
+            }
         }
     }
 
@@ -80,7 +101,7 @@ public class BagInventory : MonoBehaviour
     private void CloseBag()
     {
         // close bag when its full
-        if (weight >= 20)
+        if (weight >= 30)
         {
             isBagOpen = false;
             bagMesh.mesh = closedBagMesh;

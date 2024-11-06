@@ -11,11 +11,11 @@ public class BagUI : MonoBehaviour
     }
 
     public List<PlantUI> plantUIList;    
-    public GameObject InventoryUI;
+    private GameObject InventoryUI;
 
        
     private Dictionary<string, GameObject> plantUIDictionary;
-    public int plantUICount;
+    private int plantUICount;
 
      
     private void Start()

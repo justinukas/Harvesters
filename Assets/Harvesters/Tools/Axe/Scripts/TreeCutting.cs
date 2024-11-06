@@ -34,6 +34,11 @@ public class TreeCutting : MonoBehaviour
                 {
                     theTree.tag = "CutTree";
 
+                    if (theTree.name == "Apple Tree")
+                    {
+                        theTree.GetComponent<AppleFall>().UnparentApples();
+                    }
+
                     theTree.GetComponent<Rigidbody>().isKinematic = false;
                     theTree.GetComponent<Rigidbody>().AddForce(transform.forward * 2);
                     destructionScript.DestructionInitiator();
