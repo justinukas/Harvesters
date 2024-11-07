@@ -34,7 +34,7 @@ public class SeedBagManager : MonoBehaviour
 
         //renders bag unusable on game start
         timesUsed = maxTimesUsed;
-        colorHandler.SetColor();
+        colorHandler.ChangeBagColor(timesUsed);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -47,7 +47,7 @@ public class SeedBagManager : MonoBehaviour
     {
         plantInfoHandler.InitializePlantInfo(tilledDirt, Wheat, Carrot);
         plantSpawningHandler.SpawnPlants(bagVariant, tilledDirt);
-        colorHandler.FadeBagColor();
+        colorHandler.ChangeBagColor(timesUsed);
         soundHandler.PlaySFX();
         particleHandler.EmitPlantingParticles(tilledDirt, plantParticles);
     }

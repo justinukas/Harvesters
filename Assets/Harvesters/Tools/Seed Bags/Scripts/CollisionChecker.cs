@@ -15,7 +15,7 @@ public class CollisionChecker : MonoBehaviour
         {
             tilledDirt = collision.gameObject;
 
-            if (tilledDirt.transform.childCount > 0 && timesUsed < maxTimesUsed)
+            if (timesUsed < maxTimesUsed && tilledDirt.transform.Find("CarrotParent").childCount == 0 && tilledDirt.transform.Find("WheatParent").childCount == 0)
             {
                 timesUsed++;
                 seedBagManager.InitializePlanting();

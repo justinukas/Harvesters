@@ -8,6 +8,6 @@ public class BuyingHandler : MonoBehaviour
     {
         timesUsed = 0;
         colorHandler = GetComponent<ColorHandler>();
-        colorHandler.ResetColors();
+        colorHandler.ChangeBagColor(timesUsed);
     }
 }

@@ -11,11 +11,9 @@ public class BagUI : MonoBehaviour
     }
 
     public List<PlantUI> plantUIList;    
-    private GameObject InventoryUI;
 
        
     private Dictionary<string, GameObject> plantUIDictionary;
-    private int plantUICount;
 
      
     private void Start()
@@ -34,7 +32,6 @@ public class BagUI : MonoBehaviour
             if (!plantCounter.activeInHierarchy)
             {
                 plantCounter.SetActive(true);
-                plantUICount++;
             }
         }
     }
@@ -45,7 +42,5 @@ public class BagUI : MonoBehaviour
         {
             uiElement.SetActive(false);
         }
-        InventoryUI.SetActive(false);
-        plantUICount = 0;
     }
 }

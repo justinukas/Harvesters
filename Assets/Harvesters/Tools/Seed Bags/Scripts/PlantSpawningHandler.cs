@@ -20,8 +20,7 @@ public class PlantSpawningHandler : MonoBehaviour
 
             foreach (Vector3 spawnOffset in positions)
             {
-                GameObject plantClone = Instantiate(plant, spawnOffset + tilledDirt.transform.position, Quaternion.identity);
-                plantClone.transform.SetParent(parent);
+                GameObject plantClone = Instantiate(plant, spawnOffset + tilledDirt.transform.position, Quaternion.identity, parent);
                 plantClone.name = plant.name;
             }
         }

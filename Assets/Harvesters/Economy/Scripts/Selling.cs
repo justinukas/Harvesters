@@ -10,8 +10,10 @@ public class Selling : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
+        Debug.Log("trigger entered");
         if (collider.gameObject.name == "Bag")
         {
+            Debug.Log("bag collided");
             if (BagInventory.weight > 0)
             {
                 value = BagInventory.weight * 2;
@@ -28,7 +30,7 @@ public class Selling : MonoBehaviour
 
     private void BoatLeave()
     {
-        Animator boatAnimator = gameObject.transform.parent.GetComponent<Animator>();
+        Animator boatAnimator = gameObject.transform.parent.parent.GetComponent<Animator>();
         boatAnimator.SetTrigger("triggerLeave");     
     }
 }

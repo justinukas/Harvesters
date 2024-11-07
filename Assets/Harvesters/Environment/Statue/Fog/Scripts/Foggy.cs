@@ -12,8 +12,8 @@ public class Foggy : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
+            directionalLight.SetActive(false);
             fogCircle.GetComponent<Animator>().SetBool("enteredFog", true);
-
         }
     }
 
@@ -21,6 +21,7 @@ public class Foggy : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
+            directionalLight.SetActive(true);
             fogCircle.GetComponent<Animator>().SetBool("enteredFog", false);
         }
     }

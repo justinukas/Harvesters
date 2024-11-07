@@ -2,19 +2,21 @@ using UnityEngine;
 
 public class Tilling : MonoBehaviour
 {
+    [SerializeField] private GameObject tilledDirt;
+    [SerializeField] private ParticleSystem ParticleSystem;
+
+    private float cooldown = 0.25f;
+
     private void Start()
     {
         gameObject.GetComponent<Tilling>().enabled = false;
     }
 
-    private float cooldown = 0.25f;
+    
     private void Update()
     {
         cooldown -= Time.deltaTime;
     }
-
-    public GameObject tilledDirt;
-    public ParticleSystem ParticleSystem;
 
     private void OnCollisionEnter(Collision collider)
     {
@@ -38,7 +40,8 @@ public class Tilling : MonoBehaviour
                 {
                     dirtParticles.Emit(8);
                     dirtParticles.Stop();
-                    Instantiate(tilledDirt, collider.gameObject.transform.position, collider.gameObject.transform.rotation);
+                    GameObject tilledDirtCopy = Instantiate(tilledDirt, collider.gameObject.transform.position, collider.gameObject.transform.rotation);
+                    tilledDirtCopy.name = "TilledDirt";
                     Destroy(collider.gameObject);
                 }
             }

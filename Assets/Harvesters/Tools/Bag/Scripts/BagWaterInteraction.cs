@@ -7,7 +7,7 @@ public class BagWaterInteraction : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "Open Bag" || collider.gameObject.tag == "Closed Bag")
+        if (collider.gameObject.tag == "Bag")
         {
             bagToPlayerScript = collider.gameObject.GetComponent<BagToPlayer>();
             bagToPlayerScript.StartMoving();
@@ -15,6 +15,8 @@ public class BagWaterInteraction : MonoBehaviour
         }
     }
 
+
+    // optimize
     private void Update()
     {
         if (collided)

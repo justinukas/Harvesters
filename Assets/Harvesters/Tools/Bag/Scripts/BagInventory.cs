@@ -53,6 +53,7 @@ public class BagInventory : MonoBehaviour
                 carrotCounter.GetComponent<Text>().text = carrotCounterText;
 
                 weight += 1f;
+                Debug.Log(weight);
 
                 Destroy(collider.gameObject); // destroy carrot
                 CloseBag();
