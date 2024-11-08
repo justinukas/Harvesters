@@ -13,21 +13,20 @@ public class WheatHarvest : MonoBehaviour
     {
         foreach (ContactPoint contactPoint in collider.contacts) // this foreach is for checking for the correct local collider, the head of the scythe   
         {
-            if (contactPoint.otherCollider.gameObject.GetComponent<WheatDestruction>())
+            if (collider.gameObject.CompareTag("WheatSmall") && contactPoint.thisCollider.gameObject.name == "Head" && BagInventory.isBagOpen == true)
             {
-                WheatDestruction WheatDestruction = contactPoint.otherCollider.gameObject.GetComponent<WheatDestruction>();
-                Harvestability Harvestability = contactPoint.otherCollider.gameObject.GetComponent<Harvestability>();
+                GameObject wheat = collider.gameObject;
 
-                if (collider.gameObject.CompareTag("WheatSmall") && contactPoint.thisCollider.gameObject.name == "Head" && BagInventory.isBagOpen == true)
-                {
-                    collider.gameObject.tag = "HarvestedWheat";
-                    collider.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                WheatDestruction WheatDestruction = wheat.GetComponent<WheatDestruction>();
+                Harvestability Harvestability = wheat.GetComponent<Harvestability>();
 
-                    gameObject.GetComponent<AudioSource>().Play();
+                wheat.tag = "HarvestedWheat";
+                wheat.GetComponent<Rigidbody>().isKinematic = false;
 
-                    BagInventory.WheatCollection();
-                    WheatDestruction.InvokeWheatDestruction();
-                }
+                gameObject.GetComponent<AudioSource>().Play();
+
+                BagInventory.Collection();
+                WheatDestruction.InvokeWheatDestruction();
             }
         }
     }

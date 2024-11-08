@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class MoneyCounter : MonoBehaviour
 {
     [HideInInspector] public float moneyNr;
-    private string moneyText;
 
     private void Start()
     {
@@ -14,10 +13,7 @@ public class MoneyCounter : MonoBehaviour
 
     public void UpdateMoneyCount()
     {
-        // converts int to string
-        moneyText = moneyNr.ToString();
-
-        // writes text on money ui
-        gameObject.GetComponent<Text>().text = moneyText;
+        // converts int moneyNr to a string value writes text on money ui
+        gameObject.GetComponent<Text>().text = moneyNr.ToString();
     }
 }

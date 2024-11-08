@@ -5,71 +5,83 @@ using UnityEngine;
 // CHATGPT COMING IN CLUTCH WITH THIS. LET IT COOK NOW
 public class PlantGrowth : MonoBehaviour
 {
-    [HideInInspector] public float growthRate = 0.01f;
-    private Transform plantParentTransform;
+    public PlantType[] plantTypes;
 
-    private Dictionary<string, (float MaxHeight, Color? GrownColor, string ChildName)> plantTypes;
-    private void Start()
+    [System.Serializable]
+    public class PlantType
     {
-        InitializePlantTypes();
-        StartCoroutine(GrowPlants());
+        public string tagName;
+        public float maxHeight;
+        public Color grownColor;
+        public bool colorHasValue;
+        public string childName;
     }
 
-    private void InitializePlantTypes()
+    private void Start()
     {
-        plantTypes = new Dictionary<string, (float MaxHeight, Color? GrownColor, string ChildName)>
-            {
-                {"WheatParent", (0.943f, new Color(0.9960784f, 0.9490196f, 0.5707546f), "Wheat") },
-                {"CarrotParent", (0.27f, null, "Carrot") }
-                // add new plants here
-            };
+        StartCoroutine(GrowPlants());
     }
 
     private IEnumerator GrowPlants()
     {
         while (true)
         {
-            foreach (var plantType in plantTypes)
+            foreach (PlantType plantType in plantTypes)
             {
-                foreach (GameObject plantParent in GameObject.FindGameObjectsWithTag(plantType.Key))
+                GameObject[] plantParents = GameObject.FindGameObjectsWithTag(plantType.tagName);
+                foreach (GameObject plantParent in plantParents)
                 {
-                    HandlePlantGrowth(plantParent, plantType.Value);
+                    Grow(plantParent, plantType);
                 }
             }
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(1.0f); // Pause for 1 second before the next growth update
         }
     }
 
-    private void HandlePlantGrowth(GameObject plantParent, (float MaxHeight, Color? GrownColor, string ChildName) plantType)
+    private void Grow(GameObject plantParent, PlantType plantData)
     {
-        plantParentTransform = plantParent.transform;
-        if (plantParentTransform.position.y < plantType.MaxHeight && plantParentTransform.childCount > 0)
+        Transform plantParentTransform = plantParent.transform;
+
+        // Grow the plant vertically until it reaches max height
+        if (plantParentTransform.position.y < plantData.maxHeight && plantParentTransform.childCount > 0)
         {
-            plantParentTransform.position = plantParentTransform.position + new Vector3(0, Time.deltaTime * growthRate, 0);
-        }
-        else if (plantParentTransform.position.y >= plantType.MaxHeight)
-        {
-            Vector3 currentPosition = plantParentTransform.position;
-            currentPosition.y = plantType.MaxHeight;
-            plantParentTransform.position = currentPosition;
+            plantParentTransform.position += new Vector3(0, plantData.maxHeight / 60f, 0);
         }
 
-        if (plantParentTransform.position.y >= plantType.MaxHeight && plantParentTransform.childCount > 0)
+        // Ensure plant stays at max height once it reaches it
+        else
         {
+            plantParentTransform.position = new Vector3(plantParentTransform.position.x, plantData.maxHeight, plantParentTransform.position.z);
+
+            // Make child gameobjects harvestable and apply grown color 
             foreach (Transform child in plantParent.transform)
             {
-                Harvestability harvestability = child.GetComponent<Harvestability>();
-                harvestability.MakeHarvestable();
-
-                if (plantType.GrownColor != null)
-                {
-                    child.GetComponent<Renderer>().material.color = plantType.GrownColor.Value;
-                }
+                MakeHarvestable(child);
+                Color(child, plantData.grownColor, plantData.colorHasValue);
             }
         }
+
+        // Reset the plant parents if all the plants have been harvested
         if (plantParentTransform.childCount == 0)
         {
             plantParentTransform.position = Vector3.zero;
+        }
+    }
+
+    // Apply harvestable states
+    private void MakeHarvestable(Transform child)
+    {
+        Harvestability harvestability = child.GetComponent<Harvestability>();
+        harvestability.MakeHarvestable();
+    }
+
+    // Apply grown color
+    private void Color(Transform child, Color? grownColor, bool colorHasValue)
+    {
+        if (colorHasValue)
+        {
+            Renderer renderer = child.GetComponent<Renderer>();
+            renderer.material.color = grownColor.Value;
         }
     }
 }

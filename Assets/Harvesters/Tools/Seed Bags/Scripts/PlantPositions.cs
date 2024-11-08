@@ -35,13 +35,13 @@ public static class PlantPositions
     public static void ListCarrotPositions()
     {
         Vector3[] carrotOffsets = {
-                    new Vector3(-0.4f, 0.2f, -0.382f), //bottom right
-                    new Vector3(0f, 0.2f, -0.382f), //middle right
+                    new Vector3(-0.4f, 0.2f, -0.4f), //bottom right
+                    new Vector3(0f, 0.2f, -0.4f), //middle right
                     new Vector3(0f, 0.2f, 0f), //middle
-                    new Vector3(0f, 0.2f, 0.3935f), //middle left
-                    new Vector3(0.4f, 0.2f, -0.382f), //top right 
-                    new Vector3(-0.4f, 0.2f, 0.3935f), //bottom left 
-                    new Vector3(0.4f, 0.2f, 0.3935f), //top right
+                    new Vector3(0f, 0.2f, 0.4f), //middle left
+                    new Vector3(0.4f, 0.2f, -0.4f), //top right 
+                    new Vector3(-0.4f, 0.2f, 0.4f), //bottom left 
+                    new Vector3(0.4f, 0.2f, 0.4f), //top right
                     new Vector3(0.4f, 0.2f, 0f), //middle top
                     new Vector3(-0.4f, 0.2f, 0f) //middle bottom
                 };

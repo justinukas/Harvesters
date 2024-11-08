@@ -28,11 +28,20 @@ public class SeedBagManager : MonoBehaviour
         soundHandler = GetComponent<SoundHandler>();
         particleHandler = GetComponent<ParticleHandler>();
 
-        // gets the "Carrot" or "Wheat" part from the gameobject name and assigns it to bagVariant
+        GetBagVariant();
+        MakeBagUnusable();
+    }
+
+    // gets the "Carrot", "Wheat", etc. part from the gameobject name and assigns it to bagVariant
+    private void GetBagVariant()
+    {
         string[] _string = gameObject.name.Split(' ');
         bagVariant = _string[0];
+    }
 
-        //renders bag unusable on game start
+    //renders bag unusable on game start
+    private void MakeBagUnusable()
+    {
         timesUsed = maxTimesUsed;
         colorHandler.ChangeBagColor(timesUsed);
     }

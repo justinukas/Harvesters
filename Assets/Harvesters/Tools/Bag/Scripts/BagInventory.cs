@@ -1,13 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BagInventory : MonoBehaviour
 {
-    [Header("Counters")]
-    [SerializeField] private GameObject carrotCounter;
-    [SerializeField] private GameObject wheatCounter;
-    [SerializeField] private GameObject appleCounter;
-
     [Header("Meshes")]
     [SerializeField] private Mesh closedBagMesh;
     [SerializeField] private Mesh openBagMesh;
@@ -15,19 +11,27 @@ public class BagInventory : MonoBehaviour
     // bag's mesh
     private MeshFilter bagMesh;
 
-    // crop counters
-    private int carrotCount = 0;
-    private int wheatCount = 0;
-    private int appleCount = 0;
-
     // fullness measurement
     [HideInInspector] public float weight = 0;
 
-
     [HideInInspector] public bool isBagOpen;
+
+    private string plant;
 
     private BagUI bagUI;
 
+    private Dictionary<string, int> plantCounts = new Dictionary<string, int>
+    {
+        {"Carrot", 0 },
+        {"Wheat", 0 },
+        {"Apple", 0}
+    };
+    private Dictionary<string, float> plantWeights = new Dictionary<string, float>
+    {
+        {"Carrot", 1.0f},
+        {"Wheat", 0.5f},
+        {"Apple", 3.0f}
+    };
 
     private void Start()
     {
@@ -37,64 +41,34 @@ public class BagInventory : MonoBehaviour
         isBagOpen = true;
     }
 
+    public void Collection()
+    {
+        if (isBagOpen)
+        {
+            bagUI.SpawnUI(plant);
+
+            plantCounts[plant] += 1;
+
+            weight += plantWeights[plant];
+
+            transform.Find("Inventory").Find(plant).GetComponent<Text>().text = plantCounts[plant].ToString();
+
+            CloseBag();
+        }
+    }
+
     // put carrot in bag
     private void OnCollisionEnter(Collision collider)
     {
         if (isBagOpen && collider.gameObject.transform.parent == null)
         {
-            if (collider.gameObject.CompareTag("Carrot"))
+            plant = collider.gameObject.tag;
+
+            if (plantWeights.ContainsKey(plant))
             {
-                string plant = "Carrot";
-                bagUI.SpawnUI(plant);
-
-                carrotCount += 1;
-                string carrotCounterText = carrotCount.ToString();
-
-                carrotCounter.GetComponent<Text>().text = carrotCounterText;
-
-                weight += 1f;
-                Debug.Log(weight);
-
-                Destroy(collider.gameObject); // destroy carrot
-                CloseBag();
-            }
-
-            else if (collider.gameObject.CompareTag("Apple"))
-            {
-                string plant = "Apple";
-                bagUI.SpawnUI(plant);
-
-                appleCount += 1;
-                string appleCounterText = appleCount.ToString();
-
-                appleCounter.GetComponent<Text>().text = appleCounterText;
-
-                weight += 3f;
-
+                Collection();
                 Destroy(collider.gameObject);
-                CloseBag();
             }
-        }
-    }
-
-    // wheat collection
-    public void WheatCollection()
-    {
-        if (isBagOpen)
-        {
-            string plant = "Wheat";
-            bagUI.SpawnUI(plant);
-
-            wheatCount += 1;
-
-            //converts int to string
-            string wheatNrText = wheatCount.ToString();
-
-            //writes number of wheat
-            wheatCounter.GetComponent<Text>().text = wheatNrText;
-
-            weight += 0.5f;
-            CloseBag();
         }
     }
 
@@ -122,10 +96,12 @@ public class BagInventory : MonoBehaviour
     {
         OpenBag();
         weight = 0f;
-        carrotCount = 0;
-        wheatCount = 0;
-        carrotCounter.GetComponent<Text>().text = "0";
-        wheatCounter.GetComponent<Text>().text = "0";
+
+        foreach (string plant in plantCounts.Keys)
+        {
+            plantCounts[plant] = 0;
+            transform.Find("Inventory").Find(plant).GetComponent<Text>().text = "0";
+        }
 
         bagUI.DisableAllUIElements();
     }
