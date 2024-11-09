@@ -11,6 +11,7 @@ public class SeedBagManager : MonoBehaviour
     [SerializeField] ParticleSystem plantParticles;
     [SerializeField] GameObject Wheat;
     [SerializeField] GameObject Carrot;
+    [SerializeField] GameObject Pumpkin;
 
     private CollisionChecker collisionChecker;
     private PlantInfoHandler plantInfoHandler;
@@ -18,6 +19,8 @@ public class SeedBagManager : MonoBehaviour
     private ColorHandler colorHandler;
     private SoundHandler soundHandler;
     private ParticleHandler particleHandler;
+
+    private string[] plantVariants = { "Wheat", "Carrot", "Pumpkin" };
 
     private void Start()
     {
@@ -48,13 +51,13 @@ public class SeedBagManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        collisionChecker.CheckCollision(ref timesUsed, maxTimesUsed, ref tilledDirt, collision);
+        collisionChecker.CheckCollision(ref timesUsed, maxTimesUsed, ref tilledDirt, collision, plantVariants);
     }
 
-    // initialized by the raycast check above
+    // initialized by the collision check above
     public void InitializePlanting()
     {
-        plantInfoHandler.InitializePlantInfo(tilledDirt, Wheat, Carrot);
+        plantInfoHandler.InitializePlantInfo(tilledDirt, Wheat, Carrot, Pumpkin);
         plantSpawningHandler.SpawnPlants(bagVariant, tilledDirt);
         colorHandler.ChangeBagColor(timesUsed);
         soundHandler.PlaySFX();

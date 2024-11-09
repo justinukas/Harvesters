@@ -29,6 +29,9 @@ public class BuyScript : MonoBehaviour
                 case "Wheat":
                     price = 15;
                     break;
+                case "Pumpkin":
+                    price = 30;
+                    break;
             }
 
             if (seedBagManager.timesUsed >= 50 && Time.time - timeOnEnter >= requiredStayLength && MoneyCounter.moneyNr >= price)

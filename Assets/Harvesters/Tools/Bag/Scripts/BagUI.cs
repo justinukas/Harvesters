@@ -1,46 +1,32 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BagUI : MonoBehaviour
-{
-    [System.Serializable]
-    public class PlantUI
-    {
-        public string plantName;
-        public GameObject plantUIElement;
-    }
+{ 
+    private Transform plantUiParent;
 
-    public List<PlantUI> plantUIList;    
-
-       
-    private Dictionary<string, GameObject> plantUIDictionary;
-
-     
     private void Start()
     {
-        plantUIDictionary = new Dictionary<string, GameObject>();
-        foreach (var plantUI in plantUIList)
-        {
-            plantUIDictionary[plantUI.plantName] = plantUI.plantUIElement;
-        }
+        plantUiParent = transform.Find("Inventory");
     }
 
     public void SpawnUI(string plant)
     {
-        if (plantUIDictionary.TryGetValue(plant, out GameObject plantCounter))  
+        if (transform.Find("Inventory").Find(plant))
         {
-            if (!plantCounter.activeInHierarchy)
+            GameObject plantUI = transform.Find("Inventory").Find(plant).gameObject;
+
+            if (!plantUI.activeInHierarchy)
             {
-                plantCounter.SetActive(true);
+                plantUI.SetActive(true);
             }
         }
     }
 
     public void DisableAllUIElements()
     {
-        foreach (GameObject uiElement in plantUIDictionary.Values)
+        foreach (Transform plantUiElement in plantUiParent)
         {
-            uiElement.SetActive(false);
+            plantUiElement.gameObject.SetActive(false);
         }
     }
 }

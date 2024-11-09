@@ -20,6 +20,9 @@ TagManager:
   - WheatParent
   - CarrotParent
   - Apple
+  - Pumpkin
+  - PumpkinParent
+  - PumpkinBag
   layers:
   - Default
   - TransparentFX

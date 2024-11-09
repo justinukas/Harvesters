@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CollisionChecker : MonoBehaviour
@@ -9,16 +10,31 @@ public class CollisionChecker : MonoBehaviour
         seedBagManager = GetComponent<SeedBagManager>();
     }
 
-    public void CheckCollision(ref int timesUsed, int maxTimesUsed, ref GameObject tilledDirt, Collision collision)
+    public void CheckCollision(ref int timesUsed, int maxTimesUsed, ref GameObject tilledDirt, Collision collision, string[] plantVariants)
     {
         if (collision.gameObject.CompareTag("TilledDirt"))
         {
             tilledDirt = collision.gameObject;
 
-            if (timesUsed < maxTimesUsed && tilledDirt.transform.Find("CarrotParent").childCount == 0 && tilledDirt.transform.Find("WheatParent").childCount == 0)
+            if (timesUsed < maxTimesUsed)
             {
-                timesUsed++;
-                seedBagManager.InitializePlanting();
+                bool allEmpty = true;
+
+                foreach (string plant in plantVariants)
+                {
+                    Transform plantParent = tilledDirt.transform.Find($"{plant}Parent");
+
+                    if (plantParent.childCount > 0)
+                    {
+                        allEmpty = false;
+                    }
+                }
+
+                if (allEmpty)
+                {
+                    timesUsed++;
+                    seedBagManager.InitializePlanting();
+                }
             }
         }
     }

@@ -36,7 +36,7 @@ public class TreeCutting : MonoBehaviour
             {
                 GameObject tree = collider.gameObject;
                 TimesCut counterScript = tree.GetComponent<TimesCut>();
-                TreeDestruction destructionScript = tree.GetComponent<TreeDestruction>();
+                Destruction destructionScript = tree.GetComponent<Destruction>();
 
                 leftTreeCollision = false;
                 cooldown = 0.2f; // reset cooldown timer
@@ -51,7 +51,7 @@ public class TreeCutting : MonoBehaviour
         }
     }
 
-    private void FellTree(GameObject tree, TreeDestruction destructionScript)
+    private void FellTree(GameObject tree, Destruction destructionScript)
     {
         tree.tag = "CutTree";
 
@@ -61,7 +61,7 @@ public class TreeCutting : MonoBehaviour
         treeRigidBody.AddForce(transform.forward * 2);
 
         // Destroy tree
-        destructionScript.DestructionInitiator();
+        destructionScript.DestroyObject(2f);
 
         // Make apples fall down if its an apple tree that was cut down
         if (tree.name == "Apple Tree")

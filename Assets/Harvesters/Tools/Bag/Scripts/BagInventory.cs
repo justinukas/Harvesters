@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,13 +25,15 @@ public class BagInventory : MonoBehaviour
     {
         {"Carrot", 0 },
         {"Wheat", 0 },
-        {"Apple", 0}
+        {"Apple", 0},
+        {"Pumpkin", 0}
     };
     private Dictionary<string, float> plantWeights = new Dictionary<string, float>
     {
         {"Carrot", 1.0f},
         {"Wheat", 0.5f},
-        {"Apple", 3.0f}
+        {"Apple", 3.0f},
+        {"Pumpkin", 8.0f }
     };
 
     private void Start()
@@ -41,7 +44,7 @@ public class BagInventory : MonoBehaviour
         isBagOpen = true;
     }
 
-    public void Collection()
+    public void Collection(string plant)
     {
         if (isBagOpen)
         {
@@ -51,7 +54,7 @@ public class BagInventory : MonoBehaviour
 
             weight += plantWeights[plant];
 
-            transform.Find("Inventory").Find(plant).GetComponent<Text>().text = plantCounts[plant].ToString();
+            transform.Find("Inventory").Find(plant).Find($"{plant} Nr").GetComponent<Text>().text = plantCounts[plant].ToString();
 
             CloseBag();
         }
@@ -66,7 +69,7 @@ public class BagInventory : MonoBehaviour
 
             if (plantWeights.ContainsKey(plant))
             {
-                Collection();
+                Collection(plant);
                 Destroy(collider.gameObject);
             }
         }
@@ -97,10 +100,14 @@ public class BagInventory : MonoBehaviour
         OpenBag();
         weight = 0f;
 
-        foreach (string plant in plantCounts.Keys)
+        foreach (string plant in plantCounts.Keys.ToList())
         {
             plantCounts[plant] = 0;
-            transform.Find("Inventory").Find(plant).GetComponent<Text>().text = "0";
+        }
+
+        foreach (string plant in plantWeights.Keys)
+        {
+            transform.Find("Inventory").Find(plant).Find($"{plant} Nr").GetComponent<Text>().text = "0";
         }
 
         bagUI.DisableAllUIElements();

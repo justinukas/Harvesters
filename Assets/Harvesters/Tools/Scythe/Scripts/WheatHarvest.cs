@@ -17,16 +17,18 @@ public class WheatHarvest : MonoBehaviour
             {
                 GameObject wheat = collider.gameObject;
 
-                WheatDestruction WheatDestruction = wheat.GetComponent<WheatDestruction>();
-                Harvestability Harvestability = wheat.GetComponent<Harvestability>();
+                Destruction destructionScript = wheat.GetComponent<Destruction>();
+                Harvestability harvestability = wheat.GetComponent<Harvestability>();
+
+                harvestability.Unparent();
 
                 wheat.tag = "HarvestedWheat";
                 wheat.GetComponent<Rigidbody>().isKinematic = false;
 
                 gameObject.GetComponent<AudioSource>().Play();
 
-                BagInventory.Collection();
-                WheatDestruction.InvokeWheatDestruction();
+                BagInventory.Collection("Wheat");
+                destructionScript.DestroyObject(1f);
             }
         }
     }
