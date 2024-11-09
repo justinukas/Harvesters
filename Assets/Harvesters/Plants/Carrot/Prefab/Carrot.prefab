@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8059514282566384980}
   - component: {fileID: 2908952641123137950}
   - component: {fileID: 7802407363220216873}
-  - component: {fileID: 3515501699063743845}
+  - component: {fileID: 9030809020791594487}
   m_Layer: 0
   m_Name: Carrot
   m_TagString: Carrot
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_Colliders:
-  - {fileID: 3515501699063743845}
+  - {fileID: 0}
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -289,8 +289,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3515501699063743845
-MeshCollider:
+--- !u!136 &9030809020791594487
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -307,7 +307,8 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2534964839176971238, guid: 0d82fb9bde8c7a043ad644ebd25bc39f, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.6648897
+  m_Height: 4.4029803
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.081146, z: 0.64034796}

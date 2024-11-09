@@ -59,9 +59,9 @@ public static class PlantPositions
     {
         Vector3[] pumpkinOffsets =
         {
-            new Vector3(-0.25f, 0.3f, 0.25f),
-            new Vector3(0.233f, 0.3f, 0.133f),
-            new Vector3(-0.056f, 0.3f, -0.277f)
+            new Vector3(-0.25f, 0.2f, 0.25f),
+            new Vector3(0.233f, 0.2f, 0.133f),
+            new Vector3(-0.056f, 0.2f, -0.277f)
         };
 
         pumpkinPositionsList.AddRange(pumpkinOffsets);

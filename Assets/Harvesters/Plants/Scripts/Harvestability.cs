@@ -4,11 +4,11 @@ public class Harvestability : MonoBehaviour
 {
     private void Start()
     {
-        GetComponent<MeshCollider>().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
     }
     public void MakeHarvestable()
     {
-        GetComponent<MeshCollider>().enabled = true;
+        GetComponent<CapsuleCollider>().enabled = true;
     }
 
     public void Unparent()

@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 8602119473188189690}
   - component: {fileID: 1166275099906724869}
   - component: {fileID: 4734185272473660485}
-  - component: {fileID: 4711133924166027650}
   - component: {fileID: 4610860682352876898}
   - component: {fileID: 3685561655570307187}
   - component: {fileID: 3004201240469821189}
+  - component: {fileID: 7603016109909155408}
   m_Layer: 0
   m_Name: Wheat
   m_TagString: WheatSmall
@@ -90,28 +90,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4711133924166027650
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8717373124033256188}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5495902117074765545, guid: 143ae59ccdf132447880e64f573a8066, type: 3}
 --- !u!54 &4610860682352876898
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -163,3 +141,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2992d943580d6e6439f0050e7086592b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &7603016109909155408
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8717373124033256188}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.0449264
+  m_Height: 11.91249
+  m_Direction: 1
+  m_Center: {x: -0.3143751, y: -1.2060089, z: -1.0999494}
