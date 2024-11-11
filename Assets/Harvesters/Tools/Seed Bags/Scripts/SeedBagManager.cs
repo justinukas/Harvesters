@@ -45,8 +45,8 @@ public class SeedBagManager : MonoBehaviour
     //renders bag unusable on game start
     private void MakeBagUnusable()
     {
-        timesUsed = maxTimesUsed;
-        colorHandler.ChangeBagColor(timesUsed);
+        //timesUsed = maxTimesUsed;
+        //colorHandler.ChangeBagColor(timesUsed);
     }
 
     private void OnCollisionEnter(Collision collision)
