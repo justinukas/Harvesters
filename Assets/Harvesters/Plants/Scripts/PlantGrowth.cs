@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // CHATGPT COMING IN CLUTCH WITH THIS. LET IT COOK NOW
 public class PlantGrowth : MonoBehaviour
@@ -46,6 +47,7 @@ public class PlantGrowth : MonoBehaviour
         if (plantParentTransform.position.y < plantData.maxHeight && plantParentTransform.childCount > 0)
         {
             plantParentTransform.position += new Vector3(0, plantData.maxHeight / 60f, 0);
+            ProgressBar(plantParentTransform,plantData.maxHeight);
         }
 
         // Ensure plant stays at max height once it reaches it
@@ -58,6 +60,8 @@ public class PlantGrowth : MonoBehaviour
             {
                 MakeHarvestable(child);
                 Color(child, plantData.grownColor, plantData.colorHasValue);
+               
+
             }
         }
 
@@ -83,5 +87,20 @@ public class PlantGrowth : MonoBehaviour
             Renderer renderer = child.GetComponent<Renderer>();
             renderer.material.color = grownColor.Value;
         }
+    }
+
+    [SerializeField] Slider Vitalijusbar;
+
+
+
+
+
+
+
+    private void ProgressBar (Transform plantParentTransform, float fullgrowth)
+    {
+        float progressing;
+        progressing = plantParentTransform.position.y/fullgrowth;
+        Vitalijusbar.value = progressing;
     }
 }

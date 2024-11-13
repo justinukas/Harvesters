@@ -9,7 +9,7 @@ public class ProgressBar : MonoBehaviour
     private Slider slider;
 
 
-    public float Fillspeed = 0.05f;
+    private float Fillspeed = 0.05f;
     private float targetProgress = 0;
 
     private void Awake()
@@ -21,7 +21,7 @@ public class ProgressBar : MonoBehaviour
     //Start is called before the first frame update
     private void Start()
     {
-        IncrementProgress(0.75f);
+        IncrementProgress(1f);
     }
 
     //Update is called once per frame
