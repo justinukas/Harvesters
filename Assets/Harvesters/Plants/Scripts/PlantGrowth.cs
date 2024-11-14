@@ -1,10 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.InputSystem.LowLevel;
-using UnityEngine.Rendering.Universal.Internal;
-using UnityEngine.UI;
 
 // CHATGPT COMING IN CLUTCH WITH THIS. LET IT COOK NOW
 public class PlantGrowth : MonoBehaviour
@@ -21,8 +16,11 @@ public class PlantGrowth : MonoBehaviour
         public string childName;
     }
 
+    private ProgressBar progressBar;
+
     private void Start()
     {
+        progressBar = GetComponent<ProgressBar>();
         StartCoroutine(GrowPlants());
     }
 
@@ -50,9 +48,12 @@ public class PlantGrowth : MonoBehaviour
         if (plantParentTransform.position.y < plantData.maxHeight && plantParentTransform.childCount > 0)
         {
             plantParentTransform.position += new Vector3(0, plantData.maxHeight / 60f, 0);
-            Cloneprogressbar(plantParentTransform);
-            ProgressBar(plantParentTransform, plantData.maxHeight);
-            
+
+            // clone the progress bar if its not there already
+            progressBar.CloneBar(plantParentTransform);
+
+            // progress the bar based on the current and max height of a plant
+            progressBar.BarProgress(plantParentTransform, plantData.maxHeight);
         }
 
         // Ensure plant stays at max height once it reaches it
@@ -65,8 +66,6 @@ public class PlantGrowth : MonoBehaviour
             {
                 MakeHarvestable(child);
                 Color(child, plantData.grownColor, plantData.colorHasValue);
-
-
             }
         }
 
@@ -93,58 +92,4 @@ public class PlantGrowth : MonoBehaviour
             renderer.material.color = grownColor.Value;
         }
     }
-
-    [SerializeField] GameObject Vitalijusbar;
-
-
-    GameObject VitalijusbarClone;
-
-
-
-
-    private void ProgressBar(Transform plantParentTransform, float fullgrowth)
-    {
-        if (VitalijusbarClone == null)
-        {
-            return;
-        }
-
-        else
-        {
-            float progressing;
-            progressing = plantParentTransform.position.y / fullgrowth;
-            VitalijusbarClone.transform.Find("Slider").GetComponent<Slider>().value = progressing;
-
-        }
-
-
-    }
-
-    private void Cloneprogressbar(Transform plantParentTransform)
-    {
-        if (plantParentTransform.parent.Find("Vitalijusbar") == false)
-        {
-            VitalijusbarClone = Instantiate(Vitalijusbar, new Vector3(plantParentTransform.position.x, 1, plantParentTransform.position.z), Quaternion.identity, plantParentTransform.parent);
-            VitalijusbarClone.name = "Vitalijusbar";
-        }
-
-
-
-
-
-
-
-
-
-
-
-    }
-
-
-
-
-
-
-
-
 }

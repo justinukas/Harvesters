@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class ProgressBar : MonoBehaviour
+public class ProgressBar1 : MonoBehaviour
 {
 
     private Slider slider;
