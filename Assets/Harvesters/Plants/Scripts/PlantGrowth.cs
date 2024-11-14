@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.Rendering.Universal.Internal;
 using UnityEngine.UI;
 
 // CHATGPT COMING IN CLUTCH WITH THIS. LET IT COOK NOW
@@ -47,7 +50,9 @@ public class PlantGrowth : MonoBehaviour
         if (plantParentTransform.position.y < plantData.maxHeight && plantParentTransform.childCount > 0)
         {
             plantParentTransform.position += new Vector3(0, plantData.maxHeight / 60f, 0);
-            ProgressBar(plantParentTransform,plantData.maxHeight);
+            Cloneprogressbar(plantParentTransform);
+            ProgressBar(plantParentTransform, plantData.maxHeight);
+            
         }
 
         // Ensure plant stays at max height once it reaches it
@@ -60,7 +65,7 @@ public class PlantGrowth : MonoBehaviour
             {
                 MakeHarvestable(child);
                 Color(child, plantData.grownColor, plantData.colorHasValue);
-               
+
 
             }
         }
@@ -89,18 +94,57 @@ public class PlantGrowth : MonoBehaviour
         }
     }
 
-    [SerializeField] Slider Vitalijusbar;
+    [SerializeField] GameObject Vitalijusbar;
+
+
+    GameObject VitalijusbarClone;
 
 
 
 
-
-
-
-    private void ProgressBar (Transform plantParentTransform, float fullgrowth)
+    private void ProgressBar(Transform plantParentTransform, float fullgrowth)
     {
-        float progressing;
-        progressing = plantParentTransform.position.y/fullgrowth;
-        Vitalijusbar.value = progressing;
+        if (VitalijusbarClone == null)
+        {
+            return;
+        }
+
+        else
+        {
+            float progressing;
+            progressing = plantParentTransform.position.y / fullgrowth;
+            VitalijusbarClone.transform.Find("Slider").GetComponent<Slider>().value = progressing;
+
+        }
+
+
     }
+
+    private void Cloneprogressbar(Transform plantParentTransform)
+    {
+        if (plantParentTransform.parent.Find("Vitalijusbar") == false)
+        {
+            VitalijusbarClone = Instantiate(Vitalijusbar, new Vector3(plantParentTransform.position.x, 1, plantParentTransform.position.z), Quaternion.identity, plantParentTransform.parent);
+            VitalijusbarClone.name = "Vitalijusbar";
+        }
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
 }
