@@ -24,6 +24,7 @@ public class PlantGrowth : MonoBehaviour
         StartCoroutine(GrowPlants());
     }
 
+
     private IEnumerator GrowPlants()
     {
         while (true)
