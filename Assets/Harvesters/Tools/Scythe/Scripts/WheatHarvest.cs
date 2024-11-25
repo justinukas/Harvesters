@@ -2,12 +2,7 @@ using UnityEngine;
 
 public class WheatHarvest : MonoBehaviour
 {
-    private BagInventory BagInventory;
-
-    private void Start()
-    {
-        BagInventory = GameObject.FindGameObjectWithTag("Bag").GetComponent<BagInventory>();
-    }
+    [SerializeField] private BagInventory BagInventory;
 
     private void OnCollisionEnter(Collision collider)
     {

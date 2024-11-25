@@ -3,7 +3,7 @@ using UnityEngine;
 public class SeedBagManager : MonoBehaviour
 {
     [HideInInspector] public int timesUsed;
-    [HideInInspector] public int maxTimesUsed = 50;
+    [HideInInspector] public int maxTimesUsed = 11;
     [HideInInspector] public string bagVariant;
     [HideInInspector] public GameObject tilledDirt;
 

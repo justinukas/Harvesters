@@ -22,7 +22,7 @@ TagManager:
   - Apple
   - Pumpkin
   - PumpkinParent
-  - PumpkinBag
+  - UnboughtTool
   layers:
   - Default
   - TransparentFX
