@@ -32,7 +32,7 @@ public class TreeCutting : MonoBehaviour
     {
         foreach (ContactPoint contactPoint in collider.contacts) // this foreach is for checking if the collider colliding is the one of the axe's head
         {
-            if (collider.gameObject.CompareTag("Tree") && cooldown <= 0 && leftTreeCollision == true && contactPoint.thisCollider.gameObject.name == "Head")
+            if (collider.gameObject.CompareTag("Tree") && cooldown <= 0 && leftTreeCollision == true && contactPoint.thisCollider.gameObject.name == "Head" && !gameObject.CompareTag("UnboughtTool"))
             {
                 GameObject tree = collider.gameObject;
                 TimesCut counterScript = tree.GetComponent<TimesCut>();

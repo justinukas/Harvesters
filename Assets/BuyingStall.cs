@@ -4,19 +4,11 @@ using UnityEngine;
 public class BuyingStall : MonoBehaviour
 {
     [SerializeField] private MoneyCounter moneyCounter;
+    [SerializeField] private PaymentBox paymentBox;
 
-    List<string> itemsOnStall = new List<string>();
+    [HideInInspector] public List<string> itemsOnStall = new List<string>();
 
-    int price = 0;
-
-    private void Update()
-    {
-        if (itemsOnStall.Count > 0)
-        {
-            Debug.Log(itemsOnStall);
-        }
-        
-    }
+    [HideInInspector] public int price = 0;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -68,6 +60,11 @@ public class BuyingStall : MonoBehaviour
                     break;
             }
         }
+        if (price > 0)
+        {
+            paymentBox.UIEnable(true);
+        }
+        else paymentBox.UIEnable(false);
         Debug.Log(price);
     }
 
@@ -97,15 +94,5 @@ public class BuyingStall : MonoBehaviour
             }
             itemsOnStall.Clear();
         }
-    }
-
-    private void DisplayPrice()
-    {
-        // add price display over box
-    }
-
-    private void PlayVFX()
-    {
-        // play vfx
     }
 }

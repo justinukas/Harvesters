@@ -1,34 +1,71 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
 
 public class PaymentBox : MonoBehaviour
 {
-    float timeEntered;
-    float requiredStayLength = 4.0f;
-    bool itemBought = false;
-
     [SerializeField] private BuyingStall buyingStall;
+
+    bool armInBox = false;
+
+    Text textObject;
+
+    int remainingPrice;
+
+    private void Start()
+    {
+        textObject = transform.Find("UI").Find("Text").GetComponent<Text>();
+        UIEnable(false);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.name == "Money Arm")
         {
-            timeEntered = Time.time;
+            armInBox = true;
+            StartCoroutine(DecreaseUIIntValue());
         }
-        itemBought = false;
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.name == "Money Arm")
         {
-            Debug.Log("waiting...");
-            if (Time.time - timeEntered > requiredStayLength && itemBought == false)
-            {
-                itemBought = true;
-                Debug.Log("bought the shit");
-                
-                buyingStall.BuyItem();
-            }
+            armInBox = false;
+        }
+    }
+
+    public void UIEnable(bool enabled)
+    {
+        if (enabled)
+        {
+            textObject.gameObject.SetActive(true);
+            remainingPrice = buyingStall.price;
+            textObject.text = remainingPrice.ToString();
+        }
+        else if (!enabled)
+        {
+            textObject.gameObject.SetActive(false);
+            textObject.text = "0";
+        }
+    }
+
+    private IEnumerator DecreaseUIIntValue()
+    {
+        while (remainingPrice > 0 && armInBox == true && buyingStall.price == 0)
+        {
+            remainingPrice--;
+            textObject.text = remainingPrice.ToString();
+            yield return new WaitForSeconds(remainingPrice / buyingStall.price);
+        }
+
+        if (remainingPrice == 0)
+        {
+            yield return new WaitForSeconds(2);
+            UIEnable(false);
+
+            // play sfx and some kind of vfx maybe
+            buyingStall.BuyItem();
         }
     }
 }

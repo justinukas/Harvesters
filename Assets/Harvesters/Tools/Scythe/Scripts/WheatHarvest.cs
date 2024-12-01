@@ -8,7 +8,7 @@ public class WheatHarvest : MonoBehaviour
     {
         foreach (ContactPoint contactPoint in collider.contacts) // this foreach is for checking for the correct local collider, the head of the scythe   
         {
-            if (collider.gameObject.CompareTag("WheatSmall") && contactPoint.thisCollider.gameObject.name == "Head" && BagInventory.isBagOpen == true)
+            if (collider.gameObject.CompareTag("WheatSmall") && contactPoint.thisCollider.gameObject.name == "Head" && BagInventory.isBagOpen == true && !gameObject.CompareTag("UnboughtTool"))
             {
                 GameObject wheat = collider.gameObject;
 
