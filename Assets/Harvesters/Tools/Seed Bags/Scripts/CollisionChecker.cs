@@ -10,11 +10,11 @@ public class CollisionChecker : MonoBehaviour
         seedBagManager = GetComponent<SeedBagManager>();
     }
 
-    public void CheckCollision(ref int timesUsed, int maxTimesUsed, ref GameObject tilledDirt, Collision collision, string[] plantVariants)
+    public void CheckCollision(ref int timesUsed, int maxTimesUsed, ref GameObject tilledDirt, GameObject other, string[] plantVariants)
     {
-        if (collision.gameObject.CompareTag("TilledDirt"))
+        if (other.CompareTag("TilledDirt"))
         {
-            tilledDirt = collision.gameObject;
+            tilledDirt = other;
 
             if (timesUsed < maxTimesUsed)
             {

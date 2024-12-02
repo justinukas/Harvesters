@@ -38,8 +38,8 @@ public class SeedBagManager : MonoBehaviour
     // gets the "Carrot", "Wheat", etc. part from the gameobject name and assigns it to bagVariant
     private void GetBagVariant()
     {
-        string[] _string = gameObject.name.Split(' ');
-        bagVariant = _string[0];
+        string[] bagName = gameObject.name.Split(' ');
+        bagVariant = bagName[0];
     }
 
     //renders bag unusable on game start
@@ -48,10 +48,10 @@ public class SeedBagManager : MonoBehaviour
         //timesUsed = maxTimesUsed;
         //colorHandler.ChangeBagColor(timesUsed);
     }
-
-    private void OnCollisionEnter(Collision collision)
+    
+    private void OnParticleCollision(GameObject other)
     {
-        collisionChecker.CheckCollision(ref timesUsed, maxTimesUsed, ref tilledDirt, collision, plantVariants);
+        collisionChecker.CheckCollision(ref timesUsed, maxTimesUsed, ref tilledDirt, other, plantVariants);
     }
 
     // initialized by the collision check above
