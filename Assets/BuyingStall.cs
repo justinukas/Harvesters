@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+using System.Linq;
 
 public class BuyingStall : MonoBehaviour
 {
@@ -65,7 +67,6 @@ public class BuyingStall : MonoBehaviour
             paymentBox.UIEnable(true);
         }
         else paymentBox.UIEnable(false);
-        Debug.Log(price);
     }
 
     // is called by PaymentBox script OnTriggerStay method
@@ -89,10 +90,29 @@ public class BuyingStall : MonoBehaviour
                 {
                     GameObject bag = GameObject.Find(item);
                     SeedBagManager seedBagManager = bag.GetComponent<SeedBagManager>();
-                    bag.GetComponent<BuyingHandler>().BuyBag(ref seedBagManager.timesUsed);
+                    bag.GetComponent<BuyingHandler>().BuyBag(ref seedBagManager.timesUsed, seedBagManager.maxTimesUsed);
                 }
             }
-            itemsOnStall.Clear();
+            StartCoroutine(ScaleUp());
         }
+    }
+
+    private IEnumerator ScaleUp()
+    {
+        foreach (string tool in itemsOnStall)
+        {
+            GameObject toolObject = GameObject.Find(tool);
+            string[] namePart = tool.Split(' ');
+            if (!namePart.Contains("Seed"))
+            {
+                while (toolObject.transform.localScale.x <= 1f)
+                {
+                    toolObject.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+                    yield return new WaitForSeconds(0.1f);
+                }
+            }
+            paymentBox.UIEnable(false);
+        }
+        itemsOnStall.Clear();
     }
 }

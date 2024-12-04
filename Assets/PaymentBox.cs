@@ -20,9 +20,10 @@ public class PaymentBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Money Arm")
+        if (other.name == "Money Arm" && buyingStall.itemsOnStall.Count > 0)
         {
             armInBox = true;
+            remainingPrice = buyingStall.price;
             StartCoroutine(DecreaseUIIntValue());
         }
     }
@@ -32,6 +33,7 @@ public class PaymentBox : MonoBehaviour
         if (other.name == "Money Arm")
         {
             armInBox = false;
+            remainingPrice = buyingStall.price;
         }
     }
 
@@ -52,7 +54,7 @@ public class PaymentBox : MonoBehaviour
 
     private IEnumerator DecreaseUIIntValue()
     {
-        while (remainingPrice > 0 && armInBox == true && buyingStall.price == 0)
+        while (remainingPrice > 0 && armInBox == true)
         {
             remainingPrice--;
             textObject.text = remainingPrice.ToString();
@@ -62,6 +64,7 @@ public class PaymentBox : MonoBehaviour
         if (remainingPrice == 0)
         {
             yield return new WaitForSeconds(2);
+            textObject.text = "0";
             UIEnable(false);
 
             // play sfx and some kind of vfx maybe

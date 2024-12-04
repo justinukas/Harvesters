@@ -41,7 +41,7 @@ public class BuyScript : MonoBehaviour
 
                 BuyingHandler seedBagBuyingHandler = collider.gameObject.GetComponent<BuyingHandler>();
 
-                seedBagBuyingHandler.BuyBag(ref seedBagManager.timesUsed);
+                seedBagBuyingHandler.BuyBag(ref seedBagManager.timesUsed, seedBagManager.maxTimesUsed);
             }
         }
     }

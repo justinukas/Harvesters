@@ -3,10 +3,12 @@ using UnityEngine;
 public class SeedParticleEmission : MonoBehaviour
 {
     private ParticleSystem seedParticles;
+    private SeedBagManager seedBagManager;
 
     private void OnEnable()
     {
         seedParticles = GetComponent<ParticleSystem>();
+        seedBagManager = GetComponent<SeedBagManager>();
     }
 
     private void Update()
@@ -18,10 +20,21 @@ public class SeedParticleEmission : MonoBehaviour
         {
             EmitParticles();
         }
+        else
+        {
+            if (seedBagManager.seedsDropping != false)
+            {
+                seedBagManager.seedsDropping = false;
+            }
+        }
     }
 
     private void EmitParticles()
     {
         seedParticles.Emit(1);
+        if (seedBagManager.seedsDropping != true)
+        {
+            seedBagManager.seedsDropping = true;
+        }
     }
 }

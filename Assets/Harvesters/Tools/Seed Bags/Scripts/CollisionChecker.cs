@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class CollisionChecker : MonoBehaviour
@@ -10,31 +9,45 @@ public class CollisionChecker : MonoBehaviour
         seedBagManager = GetComponent<SeedBagManager>();
     }
 
-    public void CheckCollision(ref int timesUsed, int maxTimesUsed, ref GameObject tilledDirt, GameObject other, string[] plantVariants)
+    public void CheckCollision(ref int timesUsed, int maxTimesUsed, ref GameObject tilledDirt, string[] plantVariants, bool seedsDropping)
     {
-        if (other.CompareTag("TilledDirt"))
+        if (seedsDropping)
         {
-            tilledDirt = other;
+            Vector3 bagPos = transform.position;
 
-            if (timesUsed < maxTimesUsed)
+            if (Physics.SphereCast(bagPos, transform.localScale.x+0.4f, Vector3.down, out RaycastHit hit, 10))
             {
-                bool allEmpty = true;
-
-                foreach (string plant in plantVariants)
+                GameObject hitObject = hit.collider.gameObject;
+                if (hitObject.CompareTag("TilledDirt"))
                 {
-                    Transform plantParent = tilledDirt.transform.Find($"{plant}Parent");
+                    tilledDirt = hitObject;
 
-                    if (plantParent.childCount > 0)
-                    {
-                        allEmpty = false;
-                    }
+                    ParentsEmptyOrNotCheck(ref timesUsed, maxTimesUsed, plantVariants, tilledDirt);
                 }
+            }
+        }
+    }
 
-                if (allEmpty)
+    private void ParentsEmptyOrNotCheck(ref int timesUsed, int maxTimesUsed, string[] plantVariants, GameObject tilledDirt)
+    {
+        if (timesUsed < maxTimesUsed)
+        {
+            bool allPlantParentsEmpty = true;
+
+            foreach (string plant in plantVariants)
+            {
+                Transform plantParent = tilledDirt.transform.Find($"{plant}Parent");
+
+                if (plantParent.childCount > 0)
                 {
-                    timesUsed++;
-                    seedBagManager.InitializePlanting();
+                    allPlantParentsEmpty = false;
                 }
+            }
+
+            if (allPlantParentsEmpty)
+            {
+                timesUsed++;
+                seedBagManager.InitializePlanting();
             }
         }
     }

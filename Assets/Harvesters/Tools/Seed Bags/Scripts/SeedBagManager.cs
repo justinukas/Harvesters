@@ -3,9 +3,10 @@ using UnityEngine;
 public class SeedBagManager : MonoBehaviour
 {
     [HideInInspector] public int timesUsed;
-    [HideInInspector] public int maxTimesUsed = 11;
+    [HideInInspector] public int maxTimesUsed = 10000;
     [HideInInspector] public string bagVariant;
     [HideInInspector] public GameObject tilledDirt;
+    [HideInInspector] public bool seedsDropping;
 
     [Header("Prefabs For Scripts")]
     [SerializeField] ParticleSystem plantParticles;
@@ -20,7 +21,7 @@ public class SeedBagManager : MonoBehaviour
     private SoundHandler soundHandler;
     private ParticleHandler particleHandler;
 
-    private string[] plantVariants = { "Wheat", "Carrot", "Pumpkin" };
+    private readonly string[] plantVariants = { "Wheat", "Carrot", "Pumpkin" };
 
     private void Start()
     {
@@ -45,13 +46,16 @@ public class SeedBagManager : MonoBehaviour
     //renders bag unusable on game start
     private void MakeBagUnusable()
     {
-        //timesUsed = maxTimesUsed;
-        //colorHandler.ChangeBagColor(timesUsed);
+        timesUsed = maxTimesUsed;
+        colorHandler.ChangeBagColor(timesUsed, maxTimesUsed);
     }
-    
-    private void OnParticleCollision(GameObject other)
+
+    private void Update()
     {
-        collisionChecker.CheckCollision(ref timesUsed, maxTimesUsed, ref tilledDirt, other, plantVariants);
+        if (!gameObject.CompareTag("UnboughtTool"))
+        {
+            collisionChecker.CheckCollision(ref timesUsed, maxTimesUsed, ref tilledDirt, plantVariants, seedsDropping);
+        }
     }
 
     // initialized by the collision check above
@@ -59,7 +63,7 @@ public class SeedBagManager : MonoBehaviour
     {
         plantInfoHandler.InitializePlantInfo(tilledDirt, Wheat, Carrot, Pumpkin);
         plantSpawningHandler.SpawnPlants(bagVariant, tilledDirt);
-        colorHandler.ChangeBagColor(timesUsed);
+        colorHandler.ChangeBagColor(timesUsed, maxTimesUsed);
         soundHandler.PlaySFX();
         particleHandler.EmitPlantingParticles(tilledDirt, plantParticles);
     }
