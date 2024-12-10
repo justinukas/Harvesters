@@ -46,8 +46,11 @@ public class SeedBagManager : MonoBehaviour
     //renders bag unusable on game start
     private void MakeBagUnusable()
     {
-        timesUsed = maxTimesUsed;
-        colorHandler.ChangeBagColor(timesUsed, maxTimesUsed);
+        if (gameObject.CompareTag("UnboughtTool"))
+        {
+            timesUsed = maxTimesUsed;
+            colorHandler.ChangeBagColor(timesUsed, maxTimesUsed);
+        }
     }
 
     private void Update()

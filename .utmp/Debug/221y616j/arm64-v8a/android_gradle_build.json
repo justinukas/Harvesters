@@ -1,0 +1,39 @@
+{
+  "buildFiles": [
+    "C:\\GameDev\\GitHub Repos\\Harvesters\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\unityLibrary\\src\\main\\cpp\\CMakeLists.txt",
+    "C:\\GameDev\\GitHub Repos\\Harvesters\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\unityLibrary\\src\\main\\cpp\\FramePacing\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Program Files\\Unity Editor\\6000.0.24f1\\Editor\\Data\\PlaybackEngines\\AndroidPlayer\\SDK\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "C:\\GameDev\\GitHub Repos\\Harvesters\\.utmp\\Debug\\221y616j\\arm64-v8a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Program Files\\Unity Editor\\6000.0.24f1\\Editor\\Data\\PlaybackEngines\\AndroidPlayer\\SDK\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "C:\\GameDev\\GitHub Repos\\Harvesters\\.utmp\\Debug\\221y616j\\arm64-v8a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "swappywrapper::@7e25bd1f32ce224db4e9": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "swappywrapper",
+      "output": "C:\\GameDev\\GitHub Repos\\Harvesters\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\unityLibrary\\build\\intermediates\\cxx\\Debug\\221y616j\\obj\\arm64-v8a\\libswappywrapper.so",
+      "runtimeFiles": []
+    }
+  },
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "C:\\Program Files\\Unity Editor\\6000.0.24f1\\Editor\\Data\\PlaybackEngines\\AndroidPlayer\\NDK\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "cppCompilerExecutable": "C:\\Program Files\\Unity Editor\\6000.0.24f1\\Editor\\Data\\PlaybackEngines\\AndroidPlayer\\NDK\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

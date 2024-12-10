@@ -1,0 +1,5 @@
+C:/GameDev/GitHub Repos/Harvesters/.utmp/Debug/221y616j/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/GameDev/GitHub Repos/Harvesters/.utmp/Debug/221y616j/arm64-v8a/CMakeFiles/rebuild_cache.dir
+C:/GameDev/GitHub Repos/Harvesters/.utmp/Debug/221y616j/arm64-v8a/FramePacing/CMakeFiles/swappywrapper.dir
+C:/GameDev/GitHub Repos/Harvesters/.utmp/Debug/221y616j/arm64-v8a/FramePacing/CMakeFiles/edit_cache.dir
+C:/GameDev/GitHub Repos/Harvesters/.utmp/Debug/221y616j/arm64-v8a/FramePacing/CMakeFiles/rebuild_cache.dir
