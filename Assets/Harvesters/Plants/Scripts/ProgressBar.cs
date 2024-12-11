@@ -10,7 +10,8 @@ public class ProgressBar : MonoBehaviour
     {
         if (plantParentTransform.parent.Find("ProgressBar") == false)
         {
-            GameObject VitalijusbarClone = Instantiate(progressBar, new Vector3(0, 1, 0), Quaternion.identity, plantParentTransform.parent);
+            GameObject VitalijusbarClone = Instantiate(progressBar, new Vector3(plantParentTransform.parent.position.x, 1, plantParentTransform.parent.position.z), Quaternion.identity);
+            VitalijusbarClone.transform.parent = plantParentTransform.parent;
             VitalijusbarClone.name = "ProgressBar";
         }
     }
