@@ -8,4 +8,7 @@ public class LightingPreset : ScriptableObject
     public Gradient fogColor;
     public AnimationCurve pointLightIntensity;
     public AnimationCurve fogDensity;
+    public Gradient skyColor;
+    public AnimationCurve horizonBlend;
+    public AnimationCurve starPower;
 }
