@@ -38,7 +38,7 @@ public class LightingManager : MonoBehaviour
         newSkybox.SetFloat("_HorizonBlend", preset.horizonBlend.Evaluate(timePercent));
         newSkybox.SetFloat("_StarPower", preset.starPower.Evaluate(timePercent));
 
-        RenderSettings.skybox = newSkybox;
+        //RenderSettings.skybox = newSkybox;
 
         directionalLight.color = preset.directionalColor.Evaluate(timePercent);
         directionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 0, 0));

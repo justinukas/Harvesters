@@ -114,7 +114,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _HorizonBlend: 17.850143
+    - _HorizonBlend: 20
     - _Metallic: 0
     - _NadirBlend: 0.01
     - _OcclusionStrength: 1
@@ -128,7 +128,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _StarHeight: 500
-    - _StarPower: 29.633667
+    - _StarPower: 20
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -147,7 +147,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 0.07079922, g: 0.1733029, b: 0.4056604, a: 0}
     - _HorizonColor: {r: 1, g: 0.5333433, b: 0.23113209, a: 0}
-    - _Skycolor: {r: 0.2846781, g: 0.65335655, b: 0.9238426, a: 1}
+    - _Skycolor: {r: 0.07058824, g: 0.17254902, b: 0.40392157, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
