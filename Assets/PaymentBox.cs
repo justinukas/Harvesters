@@ -6,11 +6,11 @@ public class PaymentBox : MonoBehaviour
 {
     [SerializeField] private BuyingStall buyingStall;
 
-    bool armInBox = false;
+    private bool armInBox = false;
 
-    Text textObject;
+    private Text textObject;
 
-    int remainingPrice;
+    private float remainingPrice;
 
     private void Start()
     {
@@ -56,9 +56,9 @@ public class PaymentBox : MonoBehaviour
     {
         while (remainingPrice > 0 && armInBox == true)
         {
-            remainingPrice--;
+            yield return new WaitForSeconds(remainingPrice / buyingStall.price * 0.25f);
+            remainingPrice -= 1;
             textObject.text = remainingPrice.ToString();
-            yield return new WaitForSeconds(remainingPrice / buyingStall.price);
         }
 
         if (remainingPrice == 0)

@@ -10,7 +10,7 @@ public class BuyingStall : MonoBehaviour
 
     [HideInInspector] public List<string> itemsOnStall = new List<string>();
 
-    [HideInInspector] public int price = 0;
+    [HideInInspector] public float price = 0;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -93,26 +93,7 @@ public class BuyingStall : MonoBehaviour
                     bag.GetComponent<BuyingHandler>().BuyBag(ref seedBagManager.timesUsed, seedBagManager.maxTimesUsed);
                 }
             }
-            StartCoroutine(ScaleUp());
         }
-    }
-
-    private IEnumerator ScaleUp()
-    {
-        foreach (string tool in itemsOnStall)
-        {
-            GameObject toolObject = GameObject.Find(tool);
-            string[] namePart = tool.Split(' ');
-            if (!namePart.Contains("Seed"))
-            {
-                while (toolObject.transform.localScale.x <= 1f)
-                {
-                    toolObject.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
-                    yield return new WaitForSeconds(0.1f);
-                }
-            }
-            paymentBox.UIEnable(false);
-        }
-        itemsOnStall.Clear();
+        CalculatePrice();
     }
 }
