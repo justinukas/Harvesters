@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TpBack : MonoBehaviour
 {
-    void OnCollisionEnter (Collision collider)
+    void OnTriggerEnter (Collider collider)
     {
         if (collider.gameObject.transform.parent != null)
         {

@@ -6,15 +6,22 @@ public class BagToPlayer : MonoBehaviour
 
     [SerializeField] private Transform player;
     [SerializeField] private Transform bag;
+    private Vector3 bagMoveGoal;
 
     private float travelTime = 10f;
     private float speed = 0.25f; // must be a value from 0f to 1f
     private float startTime;
 
+    private void Start()
+    {
+        bagMoveGoal = new Vector3(122.1434f, 0.7816046f, 16f);
+    }
+
     public void StartMoving()
     {
         move = true;
         startTime = Time.time;
+        GetComponent<Rigidbody>().isKinematic = true;
     }
 
     private void Update()
@@ -27,11 +34,11 @@ public class BagToPlayer : MonoBehaviour
 
             Vector3 bagCenter = bag.position - center;
 
-            Vector3 playerCenter = player.position - center;
+            Vector3 goalCenter = player.position - center;
 
             float fracComplete = (Time.time - startTime) / travelTime;
 
-            bag.position = Vector3.Slerp(bagCenter, playerCenter, fracComplete * speed);
+            bag.position = Vector3.Slerp(bagCenter, goalCenter, fracComplete * speed);
 
             bag.position += center;
 
@@ -39,6 +46,7 @@ public class BagToPlayer : MonoBehaviour
         if (Vector3.Distance(bag.position, player.position) < 1)
         {
             move = false;
+            GetComponent<Rigidbody>().isKinematic = false;
         }
     }
 }

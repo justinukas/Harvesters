@@ -23,7 +23,7 @@ public class ProgressBar : MonoBehaviour
         {
             float progressing;
             progressing = plantParentTransform.position.y / fullgrowth;
-            plantParentTransform.parent.Find("ProgressBar").Find("Canvas").Find("Background").Find("Background (1)").GetComponent<Image>().fillAmount = progressing;
+            plantParentTransform.parent.Find("ProgressBar").Find("Canvas").Find("Background").Find("Background (1)").GetComponent<Image>().fillAmount = progressing;   
         }
         else { return; }
     }

@@ -42,7 +42,7 @@ public class LightingManager : MonoBehaviour
         newSkybox.SetFloat("_HorizonBlend", preset.horizonBlend.Evaluate(timePercent));
         newSkybox.SetFloat("_StarPower", preset.starPower.Evaluate(timePercent));
 
-        if (timePercent >= 0.75f || timePercent <= 0.25)
+        /*if (timePercent >= 0.75f || timePercent <= 0.25)
         {
             inverse = -1;
             if (newSkybox.GetColor("_SkylightColor") != moonColor)
@@ -59,8 +59,7 @@ public class LightingManager : MonoBehaviour
                 newSkybox.SetColor("_SkylightColor", sunColor);
             }
         }
-
-        newSkybox.SetVector("_MainLightAngle", transform.forward * inverse);
+        newSkybox.SetVector("_MainLightAngle", transform.forward * inverse);*/
 
         directionalLight.color = preset.directionalColor.Evaluate(timePercent);
         directionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 0, 0));

@@ -31,7 +31,7 @@ public static class PlantPositions
             for (int columns = 1; columns <= 5; columns++)
             {
                 wheatPositionsList.Add(new Vector3(currentWheatOffsetX, 0.30f, currentWheatOffsetZ));
-                currentWheatOffsetZ = -offset + 0.5f;
+                currentWheatOffsetZ -= offset;
             }
             currentWheatOffsetX -= offset;
             currentWheatOffsetZ = initialWheatOffsetZ;

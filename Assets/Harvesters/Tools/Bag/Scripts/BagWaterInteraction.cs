@@ -7,7 +7,7 @@ public class BagWaterInteraction : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "Bag")
+        if (collider.gameObject.name == "Bag")
         {
             bagToPlayerScript = collider.gameObject.GetComponent<BagToPlayer>();
             bagToPlayerScript.StartMoving();

@@ -93,7 +93,9 @@ public class BuyingStall : MonoBehaviour
                     bag.GetComponent<BuyingHandler>().BuyBag(ref seedBagManager.timesUsed, seedBagManager.maxTimesUsed);
                 }
             }
+            itemsOnStall.Clear();
         }
         CalculatePrice();
+        paymentBox.UIEnable(false);
     }
 }
